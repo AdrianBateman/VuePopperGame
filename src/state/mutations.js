@@ -13,3 +13,15 @@ export function setRemainingPoppers(newInt) {
 export function decreaseRemainingPoppers() {
     this.state.game.remainingPoppers--;
 }
+
+export function setCurrentPlayer(newInt) {
+    this.state.game.currentPlayer = newInt;
+}
+
+export function addPlayer(playerData) {
+    this.state.players.push(playerData);
+}
+
+export function decreasePlayerTurn(playerId) {
+    this.state.players[playerId].remainingTurns--;
+}

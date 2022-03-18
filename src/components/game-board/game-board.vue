@@ -1,7 +1,5 @@
 <template>
-  <section
-    class="game-board"
-  >
+  <section class="game-board">
     <Popper
       v-for="index in state.game.numberPoppers"
       :key="index"
@@ -12,7 +10,7 @@
 </template>
 
 <script>
-import { store } from '../../state/store';
+import { store } from "../../state/store";
 import Popper from "../popper/popper.vue";
 
 export default {
