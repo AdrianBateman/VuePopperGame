@@ -19,17 +19,22 @@ export function startCreatePlayers() {
 export function startDecrecePlayerTurn(playerId) {
     const {
         remainingTurns,
+        name,
     } = this.state.players[this.state.game.currentPlayer];
 
-    if (remainingTurns > 1) {
-        this.decreasePlayerTurn(playerId);
-    } else {
-        this.setPlayerTurn({
-            playerId,
-            turns: 5,
-        });
+    if (this.state.game.remainingPoppers > 0) {
+        if (remainingTurns > 1) {
+            this.decreasePlayerTurn(playerId);
+        } else {
+            this.setPlayerTurn({
+                playerId,
+                turns: 5,
+            });
 
-        this.startChangePlayer();
+            this.startChangePlayer();
+        }
+    } else {
+        this.setWinner(name);
     }
 }
 

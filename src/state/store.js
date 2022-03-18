@@ -10,6 +10,7 @@ import {
     addPlayer,
     decreasePlayerTurn,
     setPlayerTurn,
+    setWinner,
 } from './mutations';
 
 import {
@@ -30,6 +31,7 @@ export const store = reactive({
     addPlayer,
     decreasePlayerTurn,
     setPlayerTurn,
+    setWinner,
 
     // Actions
     startCreatePlayers,

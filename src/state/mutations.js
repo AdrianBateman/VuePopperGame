@@ -14,6 +14,10 @@ export function decreaseRemainingPoppers() {
     this.state.game.remainingPoppers--;
 }
 
+export function setWinner(newString) {
+    this.state.game.winner = newString;
+}
+
 export function setCurrentPlayer(newInt) {
     this.state.game.currentPlayer = newInt;
 }

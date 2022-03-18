@@ -3,17 +3,23 @@
     <div class="title">
       <h1 class="title-text">{{ state.title }}</h1>
     </div>
-    <score-board
-      :number-poppers="state.game.numberPoppers"
-      :remaining-poppers="state.game.remainingPoppers"
-      :current-player="state.game.currentPlayer"
-      :turns-left="getTuurnsLeft"
-    />
-    <section>
-      <button class="end-turn-button" @click.prevent="handleEndTurnButton">
-        End Turn
-      </button>
-    </section>
+    <div v-if="!state.game.winner">
+      <score-board
+        :number-poppers="state.game.numberPoppers"
+        :remaining-poppers="state.game.remainingPoppers"
+        :current-player="state.game.currentPlayer"
+        :turns-left="getTuurnsLeft"
+      />
+      <nav>
+        <button class="end-turn-button" @click.prevent="handleEndTurnButton">
+          End turn
+        </button>
+      </nav>
+    </div>
+    <div v-else>
+      <h2>{{ state.game.winner }} Wins!</h2>
+      <button class="end-turn-button">New game</button>
+    </div>
     <game-board />
   </div>
 </template>
