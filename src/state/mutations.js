@@ -22,6 +22,10 @@ export function addPlayer(playerData) {
     this.state.players.push(playerData);
 }
 
+export function setPlayerTurn({playerId, turns}) {
+    this.state.players[playerId].remainingTurns = turns;
+}
+
 export function decreasePlayerTurn(playerId) {
     this.state.players[playerId].remainingTurns--;
 }

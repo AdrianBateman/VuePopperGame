@@ -6,7 +6,14 @@
     <score-board
       :number-poppers="state.game.numberPoppers"
       :remaining-poppers="state.game.remainingPoppers"
+      :current-player="state.game.currentPlayer"
+      :turns-left="getTuurnsLeft"
     />
+    <section>
+      <button class="end-turn-button" @click.prevent="handleEndTurnButton">
+        End Turn
+      </button>
+    </section>
     <game-board />
   </div>
 </template>
@@ -29,6 +36,21 @@ export default {
     return {
       state: store.state,
     };
+  },
+  methods: {
+    handleEndTurnButton() {
+      store.setPlayerTurn({
+        playerId: this.state.game.currentPlayer,
+        turns: 5,
+      });
+
+      store.startChangePlayer();
+    },
+  },
+  computed: {
+    getTuurnsLeft() {
+      return this.state.players[this.state.game.currentPlayer].remainingTurns;
+    },
   },
 };
 </script>

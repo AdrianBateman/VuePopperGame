@@ -26,6 +26,7 @@ export default {
   methods: {
     handelPopperClick() {
       store.decreaseRemainingPoppers();
+      store.startDecrecePlayerTurn(this.state.game.currentPlayer);
     },
   },
 };
