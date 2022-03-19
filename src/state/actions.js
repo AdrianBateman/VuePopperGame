@@ -3,12 +3,10 @@ export function startCreatePlayers() {
         {
             name: 'Player One',
             remainingTurns: 5,
-            wins: 0,
         },
         {
             name: 'Player Two',
             remainingTurns: 5,
-            wins: 0,
         },
     ]
         .forEach((player) => this.addPlayer(player));

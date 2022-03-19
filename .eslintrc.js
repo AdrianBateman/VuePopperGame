@@ -4,13 +4,12 @@ module.exports = {
     node: true,
   },
   extends: [
-    // add more generic rulesets here, such as:
-    //'plugin:vue/vue3-essential',
+    'plugin:vue/vue3-essential',
     '@vue/airbnb',
-    //'eslint:recommended',
-    //'plugin:vue/vue3-recommended',
-    //'plugin:vue/vue3-essential', // This option doesn't impose formatting rules
-    'plugin:vue/vue3-strongly-recommended', // This option imposes formatting rules on your code to improve readability
+    'eslint:recommended',
+    'plugin:vue/vue3-recommended',
+    'plugin:vue/vue3-essential',
+    'plugin:vue/vue3-strongly-recommended',
   ],
   parserOptions: {
     parser: '@babel/eslint-parser',
