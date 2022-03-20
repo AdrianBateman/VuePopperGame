@@ -7,7 +7,7 @@
       <score-board
         :number-poppers="state.game.numberPoppers"
         :remaining-poppers="state.game.remainingPoppers"
-        :current-player="state.game.currentPlayer"
+        :current-player="getCurrentPlayer"
         :turns-left="getTurnsLeft"
       />
       <nav>
@@ -56,13 +56,16 @@ export default {
       store.startChangePlayer();
     },
     handleNewGameClick() {
-      store.startNewGame(9);
+      store.startNewGame(25);
     },
   },
   computed: {
     getTurnsLeft() {
       return this.state.players[this.state.game.currentPlayer].remainingTurns;
     },
+    getCurrentPlayer() {
+      return this.state.players[this.state.game.currentPlayer].name;
+    }
   },
 };
 </script>

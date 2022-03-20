@@ -3,14 +3,6 @@
     <h2>Score</h2>
     <table>
       <tr>
-        <td>Number of Poppers</td>
-        <td>{{ numberPoppers }}</td>
-      </tr>
-      <tr>
-        <td>Remaining Poppers</td>
-        <td>{{ remainingPoppers }}</td>
-      </tr>
-      <tr>
         <td>Current Player</td>
         <td>{{ currentPlayer }}</td>
       </tr>
@@ -35,7 +27,7 @@ export default {
       default: undefined,
     },
     currentPlayer: {
-      type: Number,
+      type: String,
       default: undefined,
     },
     turnsLeft: {
