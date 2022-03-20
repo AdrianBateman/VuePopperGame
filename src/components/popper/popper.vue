@@ -12,22 +12,20 @@
 
 <script>
 export default {
-  name: "Popper",
+  name: 'Popper',
   props: {
     id: {
       type: String,
       default: undefined,
     },
-  },
-  data() {
-    return {
-      isPopped: false,
-    };
+    isPopped: {
+      type: Boolean,
+      default: false,
+    }
   },
   methods: {
     handleClickEvent() {
-      this.isPopped = true;
-      this.$emit("popperclick", this.id);
+      this.$emit('popperclick', this.id);
     },
   },
 };

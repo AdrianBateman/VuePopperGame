@@ -1,35 +1,45 @@
+
+
 export function setTitle(newString) {
-    this.state.title = newString;
+  this.state.title = newString;
 }
 
 export function setNumberPoppers(newInt) {
-    this.state.game.numberPoppers = newInt;
+  this.state.game.numberPoppers = newInt;
 }
 
 export function setRemainingPoppers(newInt) {
-    this.state.game.remainingPoppers = newInt;
+  this.state.game.remainingPoppers = newInt;
 }
 
 export function decreaseRemainingPoppers() {
-    this.state.game.remainingPoppers--;
+  this.state.game.remainingPoppers--;
 }
 
 export function setWinner(newString) {
-    this.state.game.winner = newString;
+  this.state.game.winner = newString;
 }
 
 export function setCurrentPlayer(newInt) {
-    this.state.game.currentPlayer = newInt;
+  this.state.game.currentPlayer = newInt;
 }
 
 export function addPlayer(playerData) {
-    this.state.players.push(playerData);
+  this.state.players.push(playerData);
 }
 
-export function setPlayerTurn({playerId, turns}) {
-    this.state.players[playerId].remainingTurns = turns;
+export function setPlayerTurn({ playerId, turns }) {
+  this.state.players[playerId].remainingTurns = turns;
 }
 
 export function decreasePlayerTurn(playerId) {
-    this.state.players[playerId].remainingTurns--;
+  this.state.players[playerId].remainingTurns--;
+}
+
+export function addPopper(id) {
+  this.state.poppers[id] = {};
+}
+
+export function setPopperIsPopped({id, isPoppedValue}) {
+  this.state.poppers[id].isPopped = isPoppedValue;
 }

@@ -24,7 +24,7 @@
 
 <script>
 export default {
-  name: "ScoreBoard",
+  name: 'ScoreBoard',
   props: {
     numberPoppers: {
       type: Number,

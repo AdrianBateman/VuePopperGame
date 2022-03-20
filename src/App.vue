@@ -8,7 +8,7 @@
         :number-poppers="state.game.numberPoppers"
         :remaining-poppers="state.game.remainingPoppers"
         :current-player="state.game.currentPlayer"
-        :turns-left="getTuurnsLeft"
+        :turns-left="getTurnsLeft"
       />
       <nav>
         <button class="end-turn-button" @click.prevent="handleEndTurnButton">
@@ -18,29 +18,32 @@
     </div>
     <div v-else>
       <h2>{{ state.game.winner }} Wins!</h2>
-      <button class="end-turn-button">New game</button>
+      <button
+        @click.prevent="handleNewGameClick"
+      >New Game</button>
     </div>
     <game-board />
   </div>
 </template>
 
 <script>
-import { store } from "./state/store";
-import ScoreBoard from "./components/score-board/score-board.vue";
-import GameBoard from "./components/game-board/game-board.vue";
+import { store } from './state/store';
+import ScoreBoard from './components/score-board/score-board.vue';
+import GameBoard from './components/game-board/game-board.vue';
 
 export default {
-  name: "App",
+  name: 'App',
   components: {
     ScoreBoard,
     GameBoard,
   },
   created() {
-    store.startCreatePlayers();
+    store.startNewGame(25);
   },
   data() {
     return {
       state: store.state,
+      newGameLightbox: true,
     };
   },
   methods: {
@@ -52,9 +55,12 @@ export default {
 
       store.startChangePlayer();
     },
+    handleNewGameClick() {
+      store.startNewGame(9);
+    },
   },
   computed: {
-    getTuurnsLeft() {
+    getTurnsLeft() {
       return this.state.players[this.state.game.currentPlayer].remainingTurns;
     },
   },

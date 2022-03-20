@@ -1,20 +1,24 @@
 <template>
-  <section class="game-board">
+  <section
+    class="game-board"
+    :style="gameBoardStyle"
+  >
     <Popper
-      v-for="index in state.game.numberPoppers"
-      :key="index"
-      :id="`popper-${index}`"
+      v-for="(index, key) in state.poppers"
+      :key="key"
+      :id="key"
+      :isPopped="index.isPopped"
       @popperclick="handelPopperClick"
     />
   </section>
 </template>
 
 <script>
-import { store } from "../../state/store";
-import Popper from "../popper/popper.vue";
+import { store } from '../../state/store';
+import Popper from '../popper/popper.vue';
 
 export default {
-  name: "GameBoard",
+  name: 'GameBoard',
   components: {
     Popper,
   },
@@ -24,10 +28,29 @@ export default {
     };
   },
   methods: {
-    handelPopperClick() {
+    handelPopperClick(id) {
       store.decreaseRemainingPoppers();
       store.startDecrecePlayerTurn(this.state.game.currentPlayer);
+      store.setPopperIsPopped({id, isPoppedValue: true});
+    },
+  },
+  computed: {
+    gameBoardStyle() {
+      return {
+        gridTemplateColumns: `repeat(${Math.sqrt(this.state.game.numberPoppers)},max-content)`,
+      };
     },
   },
 };
 </script>
+
+<style scoped lang="scss">
+.game-board {
+  display: grid;
+  width: fit-content;
+  margin: 0 auto;
+  grid-gap: 25px;
+  padding: 25px;
+  border: 2px solid black;
+}
+</style>

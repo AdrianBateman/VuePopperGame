@@ -1,45 +1,58 @@
 export function startCreatePlayers() {
-    [
-        {
-            name: 'Player One',
-            remainingTurns: 5,
-        },
-        {
-            name: 'Player Two',
-            remainingTurns: 5,
-        },
-    ]
-        .forEach((player) => this.addPlayer(player));
+  this.state.players = [];
 
-        this.setCurrentPlayer(0);
+  [
+    {
+      name: 'Player One',
+      remainingTurns: 5,
+    },
+    {
+      name: 'Player Two',
+      remainingTurns: 5,
+    },
+  ]
+    .forEach((player) => this.addPlayer(player));
+
+  this.setCurrentPlayer(0);
 }
 
 export function startDecrecePlayerTurn(playerId) {
-    const {
-        remainingTurns,
-        name,
-    } = this.state.players[this.state.game.currentPlayer];
+  const {
+    remainingTurns,
+    name,
+  } = this.state.players[this.state.game.currentPlayer];
 
-    if (this.state.game.remainingPoppers > 0) {
-        if (remainingTurns > 1) {
-            this.decreasePlayerTurn(playerId);
-        } else {
-            this.setPlayerTurn({
-                playerId,
-                turns: 5,
-            });
-
-            this.startChangePlayer();
-        }
+  if (this.state.game.remainingPoppers > 0) {
+    if (remainingTurns > 1) {
+      this.decreasePlayerTurn(playerId);
     } else {
-        this.setWinner(name);
+      this.setPlayerTurn({
+        playerId,
+        turns: 5,
+      });
+
+      this.startChangePlayer();
     }
+  } else {
+    this.setWinner(name);
+  }
 }
 
 export function startChangePlayer() {
-    this.state.game.currentPlayer = (
-                this.state.game.currentPlayer === (this.state.players.length - 1)
-    )
-        ? 0
-        : this.state.game.currentPlayer + 1;
+  this.state.game.currentPlayer = (
+    this.state.game.currentPlayer === (this.state.players.length - 1)
+  )
+    ? 0
+    : this.state.game.currentPlayer + 1;
+}
+
+export function startNewGame(boardSize) {
+  this.startCreatePlayers();
+  this.setNumberPoppers(boardSize);
+  this.setRemainingPoppers(boardSize);
+  this.setWinner(undefined);
+
+  for(let i = 0; i < boardSize; i += 1) {
+    this.addPopper(`popper-${i}`);
+  }
 }
