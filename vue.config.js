@@ -1,8 +1,8 @@
 const { defineConfig } = require('@vue/cli-service');
 const path = require('path');
 const { VueLoaderPlugin } = require('vue-loader');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = defineConfig({
   transpileDependencies: true,
@@ -13,28 +13,28 @@ module.exports = defineConfig({
       rules: [
         {
           test: /\.vue$/,
-          loader: 'vue-loader'
+          loader: 'vue-loader',
         },
         {
           test: /\.s?css$/,
           use: [
             MiniCssExtractPlugin.loader,
-            "css-loader",
-            "sass-loader",
+            'css-loader',
+            'sass-loader',
           ],
         },
-      ]
+      ],
     },
     plugins: [
       new VueLoaderPlugin(),
       new MiniCssExtractPlugin({
-          filename: "[name].css",
-          chunkFilename: "[name].css",
-          }),
+        filename: '[name].css',
+        chunkFilename: '[name].css',
+      }),
       new CleanWebpackPlugin(),
     ],
     watchOptions: {
       poll: 1000,
     },
-  }
+  },
 });
