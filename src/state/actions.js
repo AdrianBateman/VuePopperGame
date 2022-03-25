@@ -1,58 +1,39 @@
-export function startCreatePlayers() {
-  this.state.players = [];
-
-  [
-    {
-      name: 'Player One',
-      remainingTurns: 5,
+export default {
+  actions: {
+    setPoppers() {
+      for(let i = 0; i < this.game.numberPoppers; i += 1) {
+        this.poppers.push({});
+      }
     },
-    {
-      name: 'Player Two',
-      remainingTurns: 5,
+
+    decreaseRemainingPoppers() {
+      this.game.remainingPoppers--;
     },
-  ]
-    .forEach((player) => this.addPlayer(player));
 
-  this.setCurrentPlayer(0);
-}
+    resetCurrentPlayerTurns() {
+      this.players[this.game.currentPlayer].remainingTurns = 5;
+    },
 
-export function startDecrecePlayerTurn(playerId) {
-  const {
-    remainingTurns,
-    name,
-  } = this.state.players[this.state.game.currentPlayer];
+    startChangePlayer() {
+      this.resetCurrentPlayerTurns();
 
-  if (this.state.game.remainingPoppers > 0) {
-    if (remainingTurns > 1) {
-      this.decreasePlayerTurn(playerId);
-    } else {
-      this.setPlayerTurn({
-        playerId,
-        turns: 5,
-      });
+      this.game.currentPlayer = (
+        this.game.currentPlayer === (this.players.length - 1)
+      )
+        ? 0
+        : this.game.currentPlayer + 1;
+    },
 
-      this.startChangePlayer();
-    }
-  } else {
-    this.setWinner(name);
-  }
-}
+    decrecePlayerTurn() {
+      if (this.getTurnsLeft > 1) {
+        this.players[this.game.currentPlayer].remainingTurns--;
+      } else {
+        this.startChangePlayer();
+      }
+    },
 
-export function startChangePlayer() {
-  this.state.game.currentPlayer = (
-    this.state.game.currentPlayer === (this.state.players.length - 1)
-  )
-    ? 0
-    : this.state.game.currentPlayer + 1;
-}
-
-export function startNewGame(boardSize) {
-  this.startCreatePlayers();
-  this.setNumberPoppers(boardSize);
-  this.setRemainingPoppers(boardSize);
-  this.setWinner(undefined);
-
-  for(let i = 0; i < boardSize; i += 1) {
-    this.addPopper(`popper-${i}`);
-  }
-}
+    setPopperIsPopped(id) {
+      this.poppers[id].isPopped = true;
+    },
+  },
+};

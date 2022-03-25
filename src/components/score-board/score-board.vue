@@ -1,19 +1,3 @@
-<template>
-  <section class="score-board">
-    <h2>Score</h2>
-    <table>
-      <tr>
-        <td>Current Player</td>
-        <td>{{ currentPlayer }}</td>
-      </tr>
-      <tr>
-        <td>Turns left</td>
-        <td>{{ turnsLeft }}</td>
-      </tr>
-    </table>
-  </section>
-</template>
-
 <script>
 export default {
   name: 'ScoreBoard',
@@ -35,8 +19,31 @@ export default {
       default: undefined,
     },
   },
+  setup(props) {
+    return { props };
+  },
 };
 </script>
+
+<template>
+  <section class="score-board">
+    <h2>Score</h2>
+    <table>
+      <tr>
+        <th scope="row">Current Player</th>
+        <td>{{ props.currentPlayer }}</td>
+      </tr>
+      <tr>
+        <th scope="row">Turns left</th>
+        <td>{{ props.turnsLeft }}</td>
+      </tr>
+      <tr>
+        <th scope="row">Remaining Poppers</th>
+        <td>{{ props.remainingPoppers }}</td>
+      </tr>
+    </table>
+  </section>
+</template>
 
 <style scoped lang="scss">
 </style>

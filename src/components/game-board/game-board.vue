@@ -1,10 +1,10 @@
 <template>
   <section
+    v-if="store.poppers.length"
     class="game-board"
-    :style="gameBoardStyle"
   >
     <Popper
-      v-for="(index, key) in state.poppers"
+      v-for="(index, key) in store.poppers"
       :key="key"
       :id="key"
       :isPopped="index.isPopped"
@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import { store } from '../../state/store';
+import { useStore } from "../../state/store";
 import Popper from '../popper/popper.vue';
 
 export default {
@@ -22,25 +22,28 @@ export default {
   components: {
     Popper,
   },
-  data() {
+  setup() {
+    const store = useStore();
+
+    const handelPopperClick = (id) => {
+      store.decreaseRemainingPoppers();
+      store.decrecePlayerTurn();
+      store.setPopperIsPopped(id);
+    };
+
     return {
-      state: store.state,
+      store,
+      handelPopperClick,
     };
   },
-  methods: {
-    handelPopperClick(id) {
-      store.decreaseRemainingPoppers();
-      store.startDecrecePlayerTurn(this.state.game.currentPlayer);
-      store.setPopperIsPopped({id, isPoppedValue: true});
-    },
-  },
-  computed: {
-    gameBoardStyle() {
-      return {
-        gridTemplateColumns: `repeat(${Math.sqrt(this.state.game.numberPoppers)},max-content)`,
-      };
-    },
-  },
+  // TODO: implement computed style
+  // computed: {
+  //   gameBoardStyle() {
+  //     return {
+  //       gridTemplateColumns: `repeat(${Math.sqrt(this.state.game.numberPoppers)},max-content)`,
+  //     };
+  //   },
+  // },
 };
 </script>
 
@@ -52,5 +55,6 @@ export default {
   grid-gap: 25px;
   padding: 25px;
   border: 2px solid black;
+  grid-template-columns: repeat(5, auto);
 }
 </style>
