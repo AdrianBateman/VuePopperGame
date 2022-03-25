@@ -1,10 +1,10 @@
 <template>
   <button
     role="button"
-    :id="id"
-    :disabled="isPopped"
+    :id="props.id"
+    :disabled="props.isPopped"
     class="popper"
-    @click="handleClickEvent"
+    @click="$emit('popperclick', props.id)"
   >
     BUTTON
   </button>
@@ -15,7 +15,7 @@ export default {
   name: 'Popper',
   props: {
     id: {
-      type: String,
+      type: Number,
       default: undefined,
     },
     isPopped: {
@@ -23,11 +23,11 @@ export default {
       default: false,
     }
   },
-  methods: {
-    handleClickEvent() {
-      this.$emit('popperclick', this.id);
-    },
-  },
+  setup(props) {
+    return {
+      props,
+    };
+  }
 };
 </script>
 
