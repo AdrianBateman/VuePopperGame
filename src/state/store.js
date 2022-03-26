@@ -43,7 +43,12 @@ export const useStore = defineStore('main', {
     },
 
     decreaseRemainingPoppers() {
-      this.game.remainingPoppers--;
+      if (this.game.remainingPoppers > 1) {
+        this.game.remainingPoppers--;
+      } else {
+        this.game.winner = this.getCurrentPlayer;
+        this.game.remainingPoppers--;
+      }
     },
 
     resetCurrentPlayerTurns() {

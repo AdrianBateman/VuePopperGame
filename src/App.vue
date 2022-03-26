@@ -11,29 +11,30 @@
     </ul>
   </section>
 
-  <!-- <div v-if="!store.game.winner"> -->
-  <score-board
-    v-if="store.poppers.length"
-    :number-poppers="store.game.numberPoppers"
-    :remaining-poppers="store.game.remainingPoppers"
-    :current-player="store.getCurrentPlayer"
-    :turns-left="store.getTurnsLeft"
-  />
-  <nav>
-    <button
+  <div v-if="!store.game.winner">
+    <score-board
       v-if="store.poppers.length"
-      class="end-turn-button"
-      @click.prevent="handleEndTurnButton"
-    >
-      End turn
-    </button>
-  </nav>
-  <!-- </div> -->
-  <!-- <div v-else>
+      :number-poppers="store.game.numberPoppers"
+      :remaining-poppers="store.game.remainingPoppers"
+      :current-player="store.getCurrentPlayer"
+      :turns-left="store.getTurnsLeft"
+    />
+    <nav>
+      <button
+        v-if="store.poppers.length"
+        class="end-turn-button"
+        @click.prevent="handleEndTurnButton"
+      >
+        End turn
+      </button>
+    </nav>
+    <game-board/>
+  </div>
+
+  <div v-else>
     <h2>{{ store.game.winner }} Wins!</h2>
     <button @click.prevent="handleNewGameClick">New Game</button>
-  </div> -->
-  <game-board/>
+  </div>
 </template>
 
 <script>
@@ -56,52 +57,19 @@ export default {
       store.startChangePlayer();
     };
 
+    const handleNewGameClick = () => {
+      store.$reset();
+      store.setPoppers();
+    }
+
     return {
       store,
       handleEndTurnButton,
+      handleNewGameClick,
     };
   },
-  // created() {
-  //   store.startCreatePlayers();
-  // },
-  // data() {
-  //   return {
-  //     store: store.store,
-  //     newGameLightbox: true,
-  //   };
-  // },
-  // methods: {
-    //   handleEndTurnButton() {
-    //     store.setPlayerTurn({
-    //       playerId: this.store.game.currentPlayer,
-    //       turns: 5,
-    //     });
-
-    //     store.startChangePlayer();
-    //   },
-
-  // },
-  // computed: {
-  //   getPoppersLength() {
-  //     return this.store.poppers.length;
-  //   },
-  //   getTurnsLeft() {
-  //     return this.store.players[this.store.game.currentPlayer].remainingTurns;
-  //   },
-  //   getCurrentPlayer() {
-  //     return this.store.players[this.store.game.currentPlayer].name;
-  //   },
-  // },
 };
 </script>
 
 <style scoped lang="scss">
-.title {
-  padding: 2rem;
-
-  &-text {
-    font-size: 1.2rem;
-    margin: 0;
-  }
-}
 </style>
