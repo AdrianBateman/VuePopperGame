@@ -27,19 +27,19 @@ export default {
 
 <template>
   <section class="score-board">
-    <h2>Score</h2>
+    <h2>Info</h2>
     <table>
+      <caption>
+        Current Player and remaining pops this turn.
+      </caption>
       <tr>
         <th scope="row">Current Player</th>
         <td>{{ props.currentPlayer }}</td>
       </tr>
+
       <tr>
         <th scope="row">Turns left</th>
         <td>{{ props.turnsLeft }}</td>
-      </tr>
-      <tr>
-        <th scope="row">Remaining Poppers</th>
-        <td>{{ props.remainingPoppers }}</td>
       </tr>
     </table>
   </section>

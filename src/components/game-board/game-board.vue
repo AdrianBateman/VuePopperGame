@@ -2,6 +2,7 @@
   <section
     v-if="store.poppers.length"
     class="game-board"
+    :style="gameBoardStyle"
   >
     <Popper
       v-for="(index, key) in store.poppers"
@@ -36,14 +37,13 @@ export default {
       handelPopperClick,
     };
   },
-  // TODO: implement computed style
-  // computed: {
-  //   gameBoardStyle() {
-  //     return {
-  //       gridTemplateColumns: `repeat(${Math.sqrt(this.state.game.numberPoppers)},max-content)`,
-  //     };
-  //   },
-  // },
+  computed: {
+    gameBoardStyle() {
+      return {
+        gridTemplateColumns: `repeat(${Math.sqrt(this.store.game.numberPoppers)},max-content)`,
+      };
+    }
+  }
 };
 </script>
 
@@ -55,6 +55,5 @@ export default {
   grid-gap: 25px;
   padding: 25px;
   border: 2px solid black;
-  grid-template-columns: repeat(5, auto);
 }
 </style>

@@ -5,22 +5,13 @@ export const useStore = defineStore('main', {
     return {
       title: 'Wizzy Popper Game',
       game: {
-        numberPoppers: 10,
-        remainingPoppers: 10,
+        numberPoppers: 25,
+        remainingPoppers: 25,
         winner: undefined,
         currentPlayer: 0,
       },
       poppers: [],
-      players: [
-        {
-          name: 'Player One',
-          remainingTurns: 5,
-        },
-        {
-          name: 'Player Two',
-          remainingTurns: 5,
-        },
-      ],
+      players: [],
       lightboxes: [],
     }
   },
@@ -75,6 +66,15 @@ export const useStore = defineStore('main', {
 
     setPopperIsPopped(id) {
       this.poppers[id].isPopped = true;
+    },
+
+    addPlayer(data) {
+      this.players.push(data);
+    },
+
+    setGameBoardSize(size) {
+      this.game.numberPoppers = size;
+      this.game.remainingPoppers = size;
     },
   },
 });
