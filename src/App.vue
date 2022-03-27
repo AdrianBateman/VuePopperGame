@@ -3,19 +3,7 @@
     <h1 class="title-text">{{ store.title }}</h1>
   </div>
 
-  <section class="how-to">
-    <details>
-      <summary class="how-to__title">
-        How to play
-      </summary>
-
-      <ul class="how-to__description">
-        <li>Each player gets to pop upto five times.</li>
-        <li>Players take it in turn to pop all the poppers.</li>
-        <li>The player who pops the last popper wins.</li>
-      </ul>
-    </details>
-  </section>
+  <how-to/>
 
   <section v-if="!store.game.winner">
     <score-board
@@ -52,28 +40,49 @@
 
     <button @click.prevent="handleNewGameClick">New Game</button>
   </section>
+
+  <light-box
+    :isOpen="store.lightBoxOpenState"
+    @closelightbox="handleCloseLightbox"
+  >
+    <h1>
+      {{ store.getCurrentPlayer }},<br>
+      it's your turn!
+    </h1>
+  </light-box>
 </template>
 
 <script>
+import { ref } from 'vue';
 import { useStore } from "./state/store";
 import { settingsStore } from "./state/settings-store";
+
+import HowTo from "./components/how-to/how-to.vue";
 import ScoreBoard from "./components/score-board/score-board.vue";
-import GameBoard from "./components/game-board/game-board.vue";
 import GameSettings from "./components/game-settings/game-settings.vue";
+import GameBoard from "./components/game-board/game-board.vue";
+import LightBox from "./components/light-box/light-box.vue"
 
 export default {
   name: "App",
   components: {
+    HowTo,
     ScoreBoard,
     GameBoard,
     GameSettings,
+    LightBox,
   },
   setup() {
     const store = useStore();
     const settings = settingsStore();
 
+    const openLightBox = () => {
+      store.setLightBoxOpenState(true);
+    }
+
     const handleEndTurnButton = () => {
       store.startChangePlayer();
+      openLightBox();
     };
 
     const addPlayers = () => {
@@ -86,6 +95,7 @@ export default {
       addPlayers();
       store.setGameBoardSize(settings.getBoardSize);
       store.setPoppers();
+      openLightBox();
     }
 
     const handleChangeBoardSize = () => {
@@ -93,6 +103,12 @@ export default {
       store.setGameBoardSize(settings.getBoardSize);
       store.setPoppers();
       addPlayers();
+      openLightBox();
+    }
+
+    const handleCloseLightbox = () => {
+
+      store.setLightBoxOpenState(false);
     }
 
     addPlayers();
@@ -103,6 +119,7 @@ export default {
       handleEndTurnButton,
       handleNewGameClick,
       handleChangeBoardSize,
+      handleCloseLightbox,
     };
   },
 };

@@ -19,6 +19,7 @@ import { settingsStore } from '../../state/settings-store';
 
 export default {
   name: "GameSettings",
+  emits: ['changeboardsize'],
   setup(props, context) {
     const store = settingsStore();
 

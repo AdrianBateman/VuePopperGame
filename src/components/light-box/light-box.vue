@@ -1,38 +1,41 @@
 <template>
-  <div v-if="isOpen" class="lightbox" :id="id">
-    <div class="lightbox-content">
+  <section
+    v-if="isOpen"
+    class="light-box"
+    @click.prevent="handleCloseButtonClick"
+  >
+    <div class="light-box-content">
       <button
-        class="ligthbox-content__close-button"
+        class="ligth-box-content__close-button"
         @click.prevent="handleCloseButtonClick"
       >Close</button>
       <slot />
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
 export default {
-  name: "Lightbox",
+  name: "LightBox",
+  emits: ['closelightbox'],
   props: {
-    id: {
-      type: String,
-      default: undefined,
-    },
     isOpen: {
       type: Boolean,
       default: false,
     },
   },
-  methods: {
-    handleCloseButtonClick() {
-      this.$emit('closelightbox', this.id);
-    },
-  },
+  setup(props, { emit } ) {
+    const handleCloseButtonClick = () => {
+      emit('closelightbox');
+    };
+
+    return {props, handleCloseButtonClick};
+  }
 };
 </script>
 
 <style scoped lang="scss">
-.lightbox {
+.light-box {
   position: fixed;
   top: 0;
   left: 0;
@@ -44,7 +47,7 @@ export default {
   background-color: rgba(0, 0, 0, 0.3);
 }
 
-.lightbox-content {
+.light-box-content {
   background-color: #fff;
   padding: 30px;
 }

@@ -3,7 +3,7 @@
     role="button"
     :id="props.id"
     :disabled="props.isPopped"
-    class="popper"
+    class="popper-button"
     @click="$emit('popperclick', props.id)"
   >
     BUTTON
@@ -12,7 +12,7 @@
 
 <script>
 export default {
-  name: 'Popper',
+  name: 'PopperButton',
   props: {
     id: {
       type: Number,
@@ -32,7 +32,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.popper {
+.popper-button {
   display: inline-block;
   width: 50px;
   height: 50px;

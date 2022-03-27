@@ -4,7 +4,7 @@
     class="game-board"
     :style="gameBoardStyle"
   >
-    <Popper
+    <popper-button
       v-for="(index, key) in store.poppers"
       :key="key"
       :id="key"
@@ -16,12 +16,12 @@
 
 <script>
 import { useStore } from "../../state/store";
-import Popper from '../popper/popper.vue';
+import PopperButton from '../popper-button/popper-button.vue';
 
 export default {
   name: 'GameBoard',
   components: {
-    Popper,
+    PopperButton,
   },
   setup() {
     const store = useStore();
