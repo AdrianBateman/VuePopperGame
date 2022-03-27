@@ -32,22 +32,6 @@
       >New Game</button>
 
       <button
-        @click="changeBoardSize(3)"
-      >3 x 3</button>
-      <button
-        @click="changeBoardSize(4)"
-      >4 x 4</button>
-      <button
-        @click="changeBoardSize(5)"
-      >5 x 5</button>
-      <button
-        @click="changeBoardSize(6)"
-      >6 x 6</button>
-      <button
-        @click="changeBoardSize(7)"
-      >7 x 7</button>
-
-      <button
         v-if="store.poppers.length"
         class="end-turn-button"
         @click.prevent="handleEndTurnButton"
@@ -55,6 +39,10 @@
         End turn
       </button>
     </nav>
+
+    <game-settings
+      @changeboardsize="handleChangeBoardSize"
+    />
 
     <game-board/>
   </section>
@@ -68,17 +56,21 @@
 
 <script>
 import { useStore } from "./state/store";
+import { settingsStore } from "./state/settings-store";
 import ScoreBoard from "./components/score-board/score-board.vue";
 import GameBoard from "./components/game-board/game-board.vue";
+import GameSettings from "./components/game-settings/game-settings.vue";
 
 export default {
   name: "App",
   components: {
     ScoreBoard,
     GameBoard,
+    GameSettings,
   },
   setup() {
     const store = useStore();
+    const settings = settingsStore();
 
     const handleEndTurnButton = () => {
       store.startChangePlayer();
@@ -92,14 +84,15 @@ export default {
     const handleNewGameClick = () => {
       store.$reset();
       addPlayers();
+      store.setGameBoardSize(settings.getBoardSize);
       store.setPoppers();
     }
 
-    const changeBoardSize = (size) => {
+    const handleChangeBoardSize = () => {
       store.$reset();
-      store.setGameBoardSize(size * size);
-      addPlayers();
+      store.setGameBoardSize(settings.getBoardSize);
       store.setPoppers();
+      addPlayers();
     }
 
     addPlayers();
@@ -109,7 +102,7 @@ export default {
       store,
       handleEndTurnButton,
       handleNewGameClick,
-      changeBoardSize,
+      handleChangeBoardSize,
     };
   },
 };
