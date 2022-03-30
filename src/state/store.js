@@ -9,10 +9,11 @@ export const useStore = defineStore('main', {
         remainingPoppers: 25,
         winner: undefined,
         currentPlayer: 0,
+        isActive: false,
       },
       poppers: [],
       players: [],
-      lightBoxOpenState: true,
+      lightBoxOpenState: false,
     }
   },
   // TODO: export this to seperate file
@@ -78,8 +79,13 @@ export const useStore = defineStore('main', {
       this.game.numberPoppers = size;
       this.game.remainingPoppers = size;
     },
+
     setLightBoxOpenState(newValue) {
       this.lightBoxOpenState = newValue;
-    }
+    },
+
+    setGameIsActive(newValue) {
+      this.game.isActive = newValue;
+    },
   },
 });
