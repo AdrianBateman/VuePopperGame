@@ -13,7 +13,6 @@ export const useStore = defineStore('main', {
       },
       poppers: [],
       players: [],
-      lightBoxOpenState: false,
     }
   },
   // TODO: export this to seperate file
@@ -24,6 +23,10 @@ export const useStore = defineStore('main', {
 
     getTurnsLeft(state) {
       return state.players[state.game.currentPlayer].remainingTurns;
+    },
+
+    getGridColumns(state) {
+      return Math.sqrt(state.game.numberPoppers);
     },
   },
   // TODO: export this to seperate file
@@ -55,8 +58,6 @@ export const useStore = defineStore('main', {
       )
         ? 0
         : this.game.currentPlayer + 1;
-
-      this.lightBoxOpenState = true;
     },
 
     decrecePlayerTurn() {
@@ -78,10 +79,6 @@ export const useStore = defineStore('main', {
     setGameBoardSize(size) {
       this.game.numberPoppers = size;
       this.game.remainingPoppers = size;
-    },
-
-    setLightBoxOpenState(newValue) {
-      this.lightBoxOpenState = newValue;
     },
 
     setGameIsActive(newValue) {

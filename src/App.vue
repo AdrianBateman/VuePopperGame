@@ -6,27 +6,29 @@
   <how-to />
 
   <main v-if="store.game.isActive"  title="Play game">
-    <score-board
-      v-if="store.poppers.length"
-      :number-poppers="store.game.numberPoppers"
-      :remaining-poppers="store.game.remainingPoppers"
-      :current-player="store.getCurrentPlayer"
-      :turns-left="store.getTurnsLeft"
-    />
+    <aside class="game-info">
+      <score-board
+        v-if="store.poppers.length"
+        :number-poppers="store.game.numberPoppers"
+        :remaining-poppers="store.game.remainingPoppers"
+        :current-player="store.getCurrentPlayer"
+        :turns-left="store.getTurnsLeft"
+      />
 
-    <nav>
-      <button @click.prevent="handleNewGameClick">New Game</button>
+      <game-settings @changeboardsize="handleChangeBoardSize" />
+    </aside>
+
+    <nav class="navigation">
+      <button class="button button--small navigation__new-game" @click.prevent="handleNewGameClick">New Game</button>
 
       <button
         v-if="store.poppers.length"
-        class="end-turn-button"
+        class="button button--small navigation__new-game"
         @click.prevent="handleEndTurnButton"
       >
         End turn
       </button>
     </nav>
-
-    <game-settings @changeboardsize="handleChangeBoardSize" />
 
     <game-board />
   </main>
@@ -36,16 +38,6 @@
 
     <button class="button" @click.prevent="handleNewGameClick">New Game</button>
   </main>
-
-  <light-box
-    :isOpen="store.lightBoxOpenState"
-    @closelightbox="handleCloseLightbox"
-  >
-    <h1>
-      {{ store.getCurrentPlayer }},<br />
-      it's your turn!
-    </h1>
-  </light-box>
 </template>
 
 <script>
@@ -56,7 +48,6 @@ import HowTo from "./components/how-to/how-to.vue";
 import ScoreBoard from "./components/score-board/score-board.vue";
 import GameSettings from "./components/game-settings/game-settings.vue";
 import GameBoard from "./components/game-board/game-board.vue";
-import LightBox from "./components/light-box/light-box.vue";
 
 export default {
   name: "App",
@@ -65,19 +56,13 @@ export default {
     ScoreBoard,
     GameBoard,
     GameSettings,
-    LightBox,
   },
   setup() {
     const store = useStore();
     const settings = settingsStore();
 
-    const openLightBox = () => {
-      store.setLightBoxOpenState(true);
-    };
-
     const handleEndTurnButton = () => {
       store.startChangePlayer();
-      openLightBox();
     };
 
     const addPlayers = () => {
@@ -91,7 +76,6 @@ export default {
       store.setGameBoardSize(settings.getBoardSize);
       store.setPoppers();
       store.setGameIsActive(true);
-      openLightBox();
     };
 
     const handleChangeBoardSize = () => {
@@ -100,11 +84,6 @@ export default {
       store.setPoppers();
       addPlayers();
       store.setGameIsActive(true);
-      openLightBox();
-    };
-
-    const handleCloseLightbox = () => {
-      store.setLightBoxOpenState(false);
     };
 
     addPlayers();
@@ -115,13 +94,15 @@ export default {
       handleEndTurnButton,
       handleNewGameClick,
       handleChangeBoardSize,
-      handleCloseLightbox,
     };
   },
 };
 </script>
 
 <style lang="scss">
+@import './scss/variables/colors';
+@import './scss/base/button.scss';
+
 * {
   margin: 0;
   padding: 0;
@@ -132,8 +113,8 @@ export default {
 
 body {
   font-size: 16px;
-  background-color: hsl(315, 100%, 98%);
-  color: hsl(0, 0%, 5%);
+  background-color: $backgroundPink;
+  color: $textColorDark;
 }
 
 #app {
@@ -148,15 +129,21 @@ body {
   }
 }
 
-.button {
-  padding: 1rem 2rem;
-  border-radius: 2rem;
-  min-width: 200px;
-  background-color: hsl(310, 100%, 56%);
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  font-weight: 600;
-  font-size: 1.1rem;
-  border: none;
+.navigation {
+  display: flex;
+  justify-content: space-between;
+}
+
+.game-info {
+  display: flex;
+}
+
+.score-board,
+.game-settings {
+  width: 50%;
+}
+
+.game-settings {
+  margin-top: 0;
 }
 </style>

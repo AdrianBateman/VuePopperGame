@@ -40,7 +40,7 @@ export default {
   computed: {
     gameBoardStyle() {
       return {
-        gridTemplateColumns: `repeat(${Math.sqrt(this.store.game.numberPoppers)},max-content)`,
+        width: `${this.store.getGridColumns * (66)}px`,
       };
     }
   }
@@ -49,11 +49,9 @@ export default {
 
 <style scoped lang="scss">
 .game-board {
-  display: grid;
-  width: fit-content;
-  margin: 0 auto;
-  grid-gap: 25px;
-  padding: 25px;
-  border: 2px solid black;
+  display: flex;
+  flex-wrap: wrap;
+  max-width: calc(100vw - 2rem);
+  margin: 2rem auto 0;
 }
 </style>

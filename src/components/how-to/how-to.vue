@@ -1,8 +1,7 @@
 <template>
   <aside class="how-to" title="How to play">
-    <h2 class="how-to__summary">How to play</h2>
-    <details class="how-to__details" open>
-      <summary>Pop bubbles to win</summary>
+    <details class="how-to__details">
+      <summary class="how-to__summary">How to play</summary>
 
       <ul class="how-to-list how-to__list">
         <li class="how-to-list__item">Each player gets to pop upto five times.</li>
@@ -25,19 +24,16 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import '../../scss/mixins/fonts';
+@import '../../scss/variables/colors';
+
 .how-to {
   padding-bottom: 1rem;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid $borderSubtlePink;
 
 
   &__summary {
-    font-size: 1rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-
-    &::first-letter {
-      font-size: 1.4rem;
-    }
+    @include titleLabel;
   }
 }
 
