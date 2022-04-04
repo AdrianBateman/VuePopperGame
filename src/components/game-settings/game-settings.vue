@@ -63,20 +63,20 @@ export default {
 
     const boardSizes = [
       {
-        label: 'Tiny',
+        label: 'tiny',
         value: 9,
       },
       {
-        label: 'Small',
+        label: 'small',
         value: 16,
       },
       {
-        label: 'Normal',
+        label: 'normal',
         value: 25,
         selected: true,
       },
       {
-        label: 'Large',
+        label: 'large',
         value: 36,
       },
     ];
@@ -88,9 +88,6 @@ export default {
       },
       {
         value: 'blue',
-      },
-      {
-        value: 'yellow',
       },
       {
         value: 'green',

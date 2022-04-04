@@ -41,6 +41,7 @@ export default {
 @import '../../scss/variables/colors';
 
 @mixin popperColor($hue) {
+  outline-color: hsl($hue, 100%, 55%);;
   background: radial-gradient(
       circle,
       hsl($hue, 100%, 85%) 50%,
@@ -67,7 +68,6 @@ export default {
   cursor: pointer;
   outline-style: solid;
   outline-width: 0;
-  outline-color: $brightPinkAction;
 
   &:disabled {
     cursor: default;
@@ -81,10 +81,6 @@ export default {
 
   &--blue {
     @include popperColor(250);
-  }
-
-  &--yellow {
-    @include popperColor(65);
   }
 
   &--green {
