@@ -4,6 +4,7 @@
     :id="props.id"
     :disabled="props.isPopped"
     class="popper-button"
+    :class="`popper-button--${store.getButtonColor}`"
     @click="$emit('popperclick', props.id)"
   >
     BUTTON
@@ -11,6 +12,8 @@
 </template>
 
 <script>
+import { settingsStore } from '../../state/settings-store';
+
 export default {
   name: 'PopperButton',
   props: {
@@ -24,8 +27,11 @@ export default {
     }
   },
   setup(props) {
+    const store = settingsStore();
+
     return {
       props,
+      store,
     };
   }
 };
@@ -33,6 +39,22 @@ export default {
 
 <style scoped lang="scss">
 @import '../../scss/variables/colors';
+
+@mixin popperColor($hue) {
+  background: radial-gradient(
+      circle,
+      hsl($hue, 100%, 85%) 50%,
+      hsl($hue, 100%, 55%) 80%
+    );
+
+  &:disabled {
+    background: radial-gradient(
+        circle,
+        hsl($hue, 100%, 55%) 50%,
+        hsl($hue, 100%, 85%) 80%
+    );
+  }
+}
 
 .popper-button {
   display: inline-block;
@@ -42,11 +64,6 @@ export default {
   border-radius: 25px;
   font-size: 0px;
   border-width: 0;
-  background: radial-gradient(
-      circle,
-      rgba(255,179,242,1) 50%,
-      rgba(255,26,217,1) 80%
-      );;
   cursor: pointer;
   outline-style: solid;
   outline-width: 0;
@@ -54,13 +71,32 @@ export default {
 
   &:disabled {
     cursor: default;
-    background: radial-gradient(
-      circle,
-      rgba(255,26,217,1) 50%,
-      rgba(255,179,242,1) 80%
-      );
     animation-name: button-pop;
     animation-duration: 50ms;
+  }
+
+  &--pink {
+    @include popperColor(310);
+  }
+
+  &--blue {
+    @include popperColor(250);
+  }
+
+  &--yellow {
+    @include popperColor(65);
+  }
+
+  &--green {
+    @include popperColor(120);
+  }
+
+  &--red {
+    @include popperColor(0);
+  }
+
+  &--orange {
+    @include popperColor(30);
   }
 }
 
