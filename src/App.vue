@@ -5,21 +5,24 @@
 
   <how-to />
 
-  <main v-if="store.game.isActive"  title="Play game">
-    <aside class="game-info">
-      <score-board
-        v-if="store.poppers.length"
-        :number-poppers="store.game.numberPoppers"
-        :remaining-poppers="store.game.remainingPoppers"
-        :current-player="store.getCurrentPlayer"
-        :turns-left="store.getTurnsLeft"
-      />
+  <aside v-if="store.game.isActive" class="game-info">
+    <score-board
+      v-if="store.poppers.length"
+      :number-poppers="store.game.numberPoppers"
+      :remaining-poppers="store.game.remainingPoppers"
+      :current-player="store.getCurrentPlayer"
+      :turns-left="store.getTurnsLeft"
+    />
+  </aside>
 
-
-    </aside>
-
+  <main v-if="store.game.isActive" class="game-area" title="Play game">
     <nav class="navigation">
-      <button class="button button--small navigation__new-game" @click.prevent="handleNewGameClick">New Game</button>
+      <button
+        class="button button--small navigation__new-game"
+        @click.prevent="handleNewGameClick"
+      >
+        New Game
+      </button>
 
       <button
         v-if="store.poppers.length"
@@ -98,8 +101,8 @@ export default {
 </script>
 
 <style lang="scss">
-@import './scss/variables/colors';
-@import './scss/base/button.scss';
+@import "./scss/variables/colors";
+@import "./scss/base/button.scss";
 
 * {
   margin: 0;
@@ -131,7 +134,14 @@ body {
 
 .navigation {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  position: absolute;
+  bottom: 1rem;
+  width: 100%;
+
+  button {
+    margin: 0 2rem
+  }
 }
 
 .game-info {
@@ -145,5 +155,12 @@ body {
 
 .game-settings {
   margin-top: 0;
+}
+
+.game-area {
+  display: grid;
+  min-height: 100vh;
+  place-items: center;
+  position: relative;
 }
 </style>
