@@ -1,115 +1,112 @@
 <template>
   <div class="game-settings">
-    <details
-      class="game-settings__details"
-    >
-      <summary
-        class="game-settings__summary"
-      >
-        Settings
-      </summary>
+    <button class="game-settings__summary" @click="isOpen = !isOpen">
+      Settings
+    </button>
+    <Transition>
+      <div v-if="isOpen" class="game-settings__details">
+        <h2>Popper Board size</h2>
 
-      <div
-        class="game-settings__fieldset"
-      >
-        <label
-          v-for="size in boardSizes"
-          class="game-settings__radio-label"
-        >
-          {{size.label}}
+        <div class="game-settings__fieldset">
+          <label v-for="size in boardSizes" class="game-settings__radio-label">
+            {{ size.label }}
 
-          <input
-            class="game-settings__radio"
-            type="radio"
-            name="board-size"
-            :value="size.value"
-            :checked="size.selected"
-            @change="handleBoardSizeChange"
-          />
-        </label>
+            <input
+              class="game-settings__radio"
+              type="radio"
+              name="board-size"
+              :value="size.value"
+              :checked="size.selected"
+              @change="handleBoardSizeChange"
+            />
+          </label>
+        </div>
+
+        <h2>Popper colour</h2>
+
+        <div class="game-settings__fieldset">
+          <label
+            v-for="color in popperColors"
+            class="game-settings__radio-label"
+            :key="color"
+          >
+            {{ color.value }}
+            <input
+              class="game-settings__radio"
+              type="radio"
+              name="popper-color"
+              :value="color.value"
+              :checked="color.selected"
+              @change="handlePopperColorChange"
+            />
+          </label>
+        </div>
       </div>
-
-      <div
-        class="game-settings__fieldset"
-      >
-        <label
-          v-for="color in popperColors"
-          class="game-settings__radio-label"
-          :key="color"
-        >
-          {{color.value}}
-          <input
-            class="game-settings__radio"
-            type="radio"
-            name="popper-color"
-            :value="color.value"
-            :checked="color.selected"
-            @change="handlePopperColorChange"
-          />
-        </label>
-      </div>
-    </details>
+    </Transition>
   </div>
 </template>
 
 <script>
-import { settingsStore } from '../../state/settings-store';
+import { ref } from "vue";
+import { settingsStore } from "../../state/settings-store";
 
 export default {
   name: "GameSettings",
-  emits: ['changeboardsize'],
-  setup(props, context) {
+  emits: ["changeboardsize"],
+  setup(_, context) {
+    const isOpen = ref(0);
     const store = settingsStore();
 
     const boardSizes = [
       {
-        label: 'tiny',
+        label: "tiny",
         value: 9,
       },
       {
-        label: 'small',
+        label: "small",
         value: 16,
       },
       {
-        label: 'normal',
+        label: "normal",
         value: 25,
         selected: true,
       },
       {
-        label: 'large',
+        label: "large",
         value: 36,
       },
     ];
 
     const popperColors = [
       {
-        value: 'pink',
+        value: "pink",
         selected: true,
       },
       {
-        value: 'blue',
+        value: "blue",
       },
       {
-        value: 'green',
+        value: "green",
       },
       {
-        value: 'red',
+        value: "red",
       },
       {
-        value: 'orange',
+        value: "orange",
       },
     ];
 
-    const handleBoardSizeChange = ({target}) => {
+    const handleBoardSizeChange = ({ target }) => {
       store.setBoardSize(parseInt(target.value));
-      context.emit('changeboardsize')
-    }
+      context.emit("changeboardsize");
+    };
 
-    const handlePopperColorChange = ({target}) => {
+    const handlePopperColorChange = ({ target }) => {
       store.setButtonColor(target.value);
-    }
+    };
 
     return {
+      isOpen,
       boardSizes,
       popperColors,
       handleBoardSizeChange,
@@ -120,21 +117,35 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import '../../scss/mixins/fonts';
-@import '../../scss/variables/colors';
+@import "../../scss/mixins/fonts";
+@import "../../scss/variables/colors";
 
 .game-settings {
+  position: relative;
+
+  &__details {
+    position: absolute;
+    min-width: 50vw;
+    margin-top: .5rem;
+    padding: 1rem;
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+    background-color: white;
+    box-shadow: 2px 2px 2px hsl(0, 0%, 90%);
+    z-index: 10;
+  }
+
   &__summary {
     @include titleLabel;
   }
 
   &__legend {
     font-size: 1.2rem;
-    padding: .5rem;
+    padding: 0.5rem;
   }
 
   &__fieldset {
-    padding: .5rem;
+    padding: 0.5rem;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
     gap: 1rem;
@@ -142,12 +153,22 @@ export default {
 
   &__radio-label {
     margin: 0;
-    padding: .25rem;
+    padding: 0.25rem;
     text-transform: capitalize;
     letter-spacing: 1px;
     text-align: center;
     background-color: $borderSubtlePink;
-    border-radius: .25rem;
+    border-radius: 0.25rem;
   }
+}
+
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
 }
 </style>

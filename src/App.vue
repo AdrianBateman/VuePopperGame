@@ -15,7 +15,7 @@
         :turns-left="store.getTurnsLeft"
       />
 
-      <game-settings @changeboardsize="handleChangeBoardSize" />
+
     </aside>
 
     <nav class="navigation">
@@ -46,7 +46,6 @@ import { settingsStore } from "./state/settings-store";
 
 import HowTo from "./components/how-to/how-to.vue";
 import ScoreBoard from "./components/score-board/score-board.vue";
-import GameSettings from "./components/game-settings/game-settings.vue";
 import GameBoard from "./components/game-board/game-board.vue";
 
 export default {
@@ -55,7 +54,6 @@ export default {
     HowTo,
     ScoreBoard,
     GameBoard,
-    GameSettings,
   },
   setup() {
     const store = useStore();
@@ -106,6 +104,7 @@ export default {
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 * + * {
   margin-top: 1.5rem;
@@ -121,6 +120,7 @@ body {
   width: calc(100vw - 2rem);
   margin: 0 auto;
   overflow-x: hidden;
+  min-height: 90vh;
 }
 
 .title {
