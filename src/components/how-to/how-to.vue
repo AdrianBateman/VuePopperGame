@@ -16,13 +16,15 @@
       </ul>
     </Transition>
 
-     <game-settings @changeboardsize="handleChangeBoardSize" />
+    <game-settings @changeboardsize="handleChangeBoardSize" />
   </aside>
 </template>
 
 <script>
 import { ref } from "vue";
 import GameSettings from "../game-settings/game-settings.vue";
+import { useStore } from "../../state/store";
+import { settingsStore } from "../../state/settings-store";
 
 export default {
   name: "HowTo",
@@ -31,9 +33,26 @@ export default {
   },
   setup() {
     const isOpen = ref(0);
+    const store = useStore();
+    const settings = settingsStore();
+
+    const addPlayers = () => {
+      store.addPlayer({ name: "Player One", remainingTurns: 5 });
+      store.addPlayer({ name: "Player Two", remainingTurns: 5 });
+    };
+
+    const handleChangeBoardSize = () => {
+      store.$reset();
+      store.setGameBoardSize(settings.getBoardSize);
+      store.setPoppers();
+      addPlayers();
+      store.setGameIsActive(true);
+    };
 
     return {
       isOpen,
+      store,
+      handleChangeBoardSize,
     };
   },
 };

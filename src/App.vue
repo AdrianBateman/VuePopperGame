@@ -44,6 +44,7 @@
 </template>
 
 <script>
+import { nextTick } from 'vue'
 import { useStore } from "./state/store";
 import { settingsStore } from "./state/settings-store";
 
@@ -71,20 +72,19 @@ export default {
       store.addPlayer({ name: "Player Two", remainingTurns: 5 });
     };
 
-    const handleNewGameClick = () => {
+    const handleNewGameClick = async () => {
       store.$reset();
       addPlayers();
       store.setGameBoardSize(settings.getBoardSize);
       store.setPoppers();
       store.setGameIsActive(true);
-    };
 
-    const handleChangeBoardSize = () => {
-      store.$reset();
-      store.setGameBoardSize(settings.getBoardSize);
-      store.setPoppers();
-      addPlayers();
-      store.setGameIsActive(true);
+      await nextTick();
+
+      window.scrollTo(
+        0,
+        document.querySelector('.game-area').getBoundingClientRect().top,
+      )
     };
 
     addPlayers();
@@ -94,7 +94,6 @@ export default {
       store,
       handleEndTurnButton,
       handleNewGameClick,
-      handleChangeBoardSize,
     };
   },
 };
@@ -111,6 +110,10 @@ export default {
 }
 * + * {
   margin-top: 1.5rem;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
