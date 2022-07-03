@@ -137,11 +137,16 @@ export default {
 
   &__summary {
     @include titleLabel;
-  }
 
-  &__legend {
-    font-size: 1.2rem;
-    padding: 0.5rem;
+    &::before {
+      content: "";
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      background-image: url("dist/cog.svg");
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
   }
 
   &__fieldset {
