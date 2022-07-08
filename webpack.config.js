@@ -9,6 +9,7 @@ module.exports = {
   entry: './src/main.js',
   output: {
     path: path.resolve( __dirname, './dist' ),
+    assetModuleFilename: '[name][ext][query]'
   },
   module: {
     rules: [
@@ -19,20 +20,19 @@ module.exports = {
       {
         test: /\.s?css$/,
         use: [
-          MiniCssExtractPlugin.loader,
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              publicPath: "/dist/",
+            },
+          },
           'css-loader',
           'sass-loader',
         ],
       },
       {
-        test: /\.(jpg|png|gif|woff|eot|ttf|svg)/,
-        use: {
-          loader: 'url-loader',
-          options: {
-            limit: 50000
-
-          }
-        }
+        test: /\.(jpg|png|svg)/,
+        type: 'asset/resource'
       }
     ],
   },
@@ -41,7 +41,6 @@ module.exports = {
     new MiniCssExtractPlugin( {
       filename: '[name].css',
       chunkFilename: '[name].css',
-      linkType: false,
     } ),
     new CleanWebpackPlugin(),
     new webpack.DefinePlugin( {

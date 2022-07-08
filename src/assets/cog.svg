@@ -1,4 +1,47 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="none" stroke="#000" xmlns:v="https://vecta.io/nano">
-	<path d="M2.6 2.6l-.956-.956A5.14 5.14 0 0 1 5.29.133v1.352c1.051 0 2.002.426 2.69 1.114l.956-.956a5.14 5.14 0 0 1 1.51 3.646H9.094c0 1.051-.426 2.002-1.114 2.69l.956.956a5.14 5.14 0 0 1-3.646 1.51V9.094c-1.051 0-2.002-.426-2.69-1.114l-.956.956A5.14 5.14 0 0 1 .133 5.29h1.352c0-1.051.426-2.002 1.114-2.69z" stroke-width=".265" />
-	<circle cx="5.292" cy="5.292" r="1.847" stroke-width=".274" />
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="40.000004"
+   height="40.000004"
+   fill="none"
+   stroke="#000000"
+   version="1.1"
+   id="svg6"
+   sodipodi:docname="cog.svg"
+   inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs10" />
+  <sodipodi:namedview
+     id="namedview8"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     showgrid="false"
+     inkscape:zoom="19.099998"
+     inkscape:cx="21.439793"
+     inkscape:cy="18.089007"
+     inkscape:window-width="1920"
+     inkscape:window-height="991"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg6" />
+  <path
+     d="M 6.2148122,6.2153661 C 9.8670565,2.5516399 14.828966,0.49509212 20.00189,0.50107805 V 5.6140611 c 3.974279,0 7.570415,1.6110435 10.172035,4.212917 l 3.615043,-3.6153938 c 3.661984,3.6532199 5.716939,8.6155347 5.709951,13.7884147 h -5.112486 c 0,3.974664 -1.610887,7.571149 -4.212508,10.173022 l 3.615043,3.615393 c -3.652866,3.66234 -8.614698,5.717493 -13.787078,5.710507 v -5.109202 c -3.974278,0 -7.570414,-1.611043 -10.1720347,-4.212916 L 6.2148122,33.792196 C 2.5514411,30.139598 0.49509269,25.177207 0.50107804,20.003781 H 5.6135656 c 0,-3.974664 2.8745536,-9.007272 4.1772547,-10.3082083 z"
+     stroke-width="1.00213"
+     id="path2"
+     sodipodi:nodetypes="ccccccccccccccccc" />
+  <ellipse
+     cx="20.009455"
+     cy="20.011345"
+     stroke-width="1.03616"
+     id="circle4"
+     rx="6.9842935"
+     ry="6.9849706" />
 </svg>

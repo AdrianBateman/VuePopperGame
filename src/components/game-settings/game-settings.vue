@@ -1,6 +1,10 @@
 <template>
   <div class="game-settings">
-    <button class="game-settings__summary" @click="isOpen = !isOpen">
+    <button
+      class="game-settings__summary"
+      :class="{'game-settings__summary--rotate': isOpen}"
+      @click="isOpen = !isOpen"
+    >
       Settings
     </button>
     <Transition>
@@ -133,19 +137,30 @@ export default {
     background-color: white;
     box-shadow: 2px 2px 2px hsl(0, 0%, 90%);
     z-index: 10;
+    transform-origin: top;
   }
 
   &__summary {
     @include titleLabel;
 
+    display: flex;
+    align-items: center;
+    padding: .5ch 1rem;
+
     &::before {
       content: "";
       display: inline-block;
-      width: 40px;
-      height: 40px;
-      background-image: url("dist/cog.svg");
+      width: 30px;
+      height: 30px;
+      background-image: url("/dist/cog.svg");
       background-repeat: no-repeat;
       background-size: cover;
+      margin: 0 1ch 0 0;
+      transition: transform .25s linear;
+    }
+
+    &--rotate::before {
+      transform: rotate(90deg);
     }
   }
 
@@ -169,11 +184,11 @@ export default {
 
 .v-enter-active,
 .v-leave-active {
-  transition: opacity 0.5s ease;
+  transition: transform 0.3s ease;
 }
 
 .v-enter-from,
 .v-leave-to {
-  opacity: 0;
+  transform: scaleY(0);
 }
 </style>

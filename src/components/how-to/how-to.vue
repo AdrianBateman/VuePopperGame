@@ -1,6 +1,10 @@
 <template>
   <aside class="how-to" title="How to play">
-    <button class="how-to__summary" @click="isOpen = !isOpen">Rules</button>
+    <button
+      class="how-to__summary"
+      :class="{'how-to__summary--active': isOpen}"
+      @click="isOpen = !isOpen"
+    >how to play?</button>
 
     <Transition>
       <ul v-if="isOpen" class="how-to-list how-to__list">
@@ -68,6 +72,27 @@ export default {
 
   &__summary {
     @include titleLabel;
+
+    display: flex;
+    align-items: center;
+    padding: .5ch 1rem;
+
+    &::before {
+      content: "";
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      background-image: url("/dist/how-to.svg");
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+      margin: 0 1ch 0 0;
+      transition: transform .25s linear;
+    }
+
+    &--active::before {
+      background-image: url("/dist/how-to-active.svg");
+    }
   }
 }
 
@@ -80,6 +105,7 @@ export default {
   border-bottom-right-radius: 0.5rem;
   box-shadow: 2px 2px 2px hsl(0, 0%, 90%);
   z-index: 10;
+  transform-origin: top;
 
   &__item {
     margin: 1rem;
@@ -96,11 +122,11 @@ export default {
 
 .v-enter-active,
 .v-leave-active {
-  transition: opacity 0.5s ease;
+  transition: transform 0.3s ease;
 }
 
 .v-enter-from,
 .v-leave-to {
-  opacity: 0;
+  transform: scaleY(0);
 }
 </style>
