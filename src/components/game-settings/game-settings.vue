@@ -1,14 +1,19 @@
 <template>
-  <div class="game-settings">
+  <div
+    class="game-settings"
+  >
     <button
       class="game-settings__summary"
       :class="{'game-settings__summary--rotate': isOpen}"
-      @click="isOpen = !isOpen"
+      @click.stop="isOpen = !isOpen"
     >
       Settings
     </button>
     <Transition>
-      <div v-if="isOpen" class="game-settings__details">
+      <div
+        v-if="isOpen"
+        class="game-settings__details"
+      >
         <h2>Popper Board size</h2>
 
         <div class="game-settings__fieldset">
@@ -58,7 +63,7 @@ export default {
   name: "GameSettings",
   emits: ["changeboardsize"],
   setup(_, context) {
-    const isOpen = ref(0);
+    let isOpen = ref(0);
     const store = settingsStore();
 
     const boardSizes = [
@@ -121,8 +126,9 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "../../scss/mixins/fonts";
-@import "../../scss/variables/colors";
+@use "../../scss/mixins/fonts";
+@use "../../scss/mixins/buttons";
+@use "../../scss/variables/colors";
 
 .game-settings {
   position: relative;
@@ -141,7 +147,8 @@ export default {
   }
 
   &__summary {
-    @include titleLabel;
+    @include fonts.titleLabel;
+    @include buttons.defaultButton;
 
     display: flex;
     align-items: center;
@@ -177,7 +184,7 @@ export default {
     text-transform: capitalize;
     letter-spacing: 1px;
     text-align: center;
-    background-color: $borderSubtlePink;
+    background-color: colors.$borderSubtlePink;
     border-radius: 0.25rem;
   }
 }

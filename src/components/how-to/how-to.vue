@@ -63,19 +63,24 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "../../scss/mixins/fonts";
-@import "../../scss/variables/colors";
+@use "../../scss/mixins/fonts";
+@use "../../scss/mixins/buttons";
+@use "../../scss/variables/colors";
 
 .how-to {
   padding-bottom: 1rem;
-  border-bottom: 1px solid $borderSubtlePink;
+  border-bottom: 1px solid colors.$borderSubtlePink;
+  display: flex;
 
   &__summary {
-    @include titleLabel;
+    @include fonts.titleLabel;
+    @include buttons.defaultButton;
 
     display: flex;
     align-items: center;
     padding: .5ch 1rem;
+    margin-right: 2rem;
+
 
     &::before {
       content: "";
@@ -97,7 +102,7 @@ export default {
 }
 
 .how-to-list {
-  margin-top: 0.5rem;
+  margin-top: 3rem;
   position: absolute;
   background-color: white;
   padding: 1rem;
