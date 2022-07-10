@@ -5,7 +5,7 @@
 
   <how-to />
 
-  <aside v-if="store.game.isActive" class="game-info">
+  <main v-if="store.game.isActive" class="game-area" title="Play game">
     <score-board
       v-if="store.poppers.length"
       :number-poppers="store.game.numberPoppers"
@@ -13,9 +13,7 @@
       :current-player="store.getCurrentPlayer"
       :turns-left="store.getTurnsLeft"
     />
-  </aside>
 
-  <main v-if="store.game.isActive" class="game-area" title="Play game">
     <nav class="navigation">
       <button
         class="button button--small navigation__new-game"
@@ -44,7 +42,7 @@
 </template>
 
 <script>
-import { nextTick } from 'vue'
+import { nextTick } from "vue";
 import { useStore } from "./state/store";
 import { settingsStore } from "./state/settings-store";
 
@@ -83,8 +81,8 @@ export default {
 
       window.scrollTo(
         0,
-        document.querySelector('.game-area').getBoundingClientRect().top,
-      )
+        document.querySelector(".game-area").getBoundingClientRect().top
+      );
     };
 
     addPlayers();
@@ -143,12 +141,15 @@ body {
   width: 100%;
 
   button {
-    margin: 0 2rem
+    margin: 0 2rem;
   }
 }
 
 .game-info {
   display: flex;
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
 }
 
 .score-board,

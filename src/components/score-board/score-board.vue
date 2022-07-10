@@ -27,28 +27,24 @@ export default {
 
 <template>
   <aside class="score-board">
-    <p class="score-board__table-cell">{{ props.currentPlayer }}</p>
-    <p class="score-board__table-cell">{{ props.turnsLeft }}</p>
+    <h2 class="score-board__title">{{ props.currentPlayer }}</h2>
+    <p class="score-board__turns">Turns: {{ props.turnsLeft }}</p>
   </aside>
 </template>
 
 <style scoped lang="scss">
 @import "../../scss/mixins/fonts";
 .score-board {
-  &__summary {
-    @include titleLabel;
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+
+  &__title {
+    margin: 0;
   }
 
-  &__table {
-    margin-top: 0.5rem;
-  }
-
-  &__table-header {
-    text-align: left;
-  }
-
-  &__table-cell {
-    padding: 0 0.5rem 0.5rem 0;
+  &__turns {
+    margin: 0;
   }
 }
 </style>
