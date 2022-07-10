@@ -13,6 +13,7 @@ export const useStore = defineStore('main', {
       },
       poppers: [],
       players: [],
+      settingsIsOpen: false,
     }
   },
   // TODO: export this to seperate file
@@ -28,6 +29,9 @@ export const useStore = defineStore('main', {
     getGridColumns(state) {
       return Math.sqrt(state.game.numberPoppers);
     },
+    getSettingsIsOpen(state) {
+      return state.settingsIsOpen;
+    }
   },
   // TODO: export this to seperate file
   actions: {
@@ -84,5 +88,9 @@ export const useStore = defineStore('main', {
     setGameIsActive(newValue) {
       this.game.isActive = newValue;
     },
+
+    setSettingsIsOpen(newVale) {
+      this.settingsIsOpen = newVale;
+    }
   },
 });

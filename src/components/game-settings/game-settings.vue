@@ -5,7 +5,7 @@
     <button
       class="game-settings__summary"
       :class="{'game-settings__summary--rotate': isOpen}"
-      @click.stop="isOpen = !isOpen"
+      @click.stop="handleButtonClick"
     >
       Settings
     </button>
@@ -56,15 +56,15 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import { useStore } from "../../state/store";
 import { settingsStore } from "../../state/settings-store";
 
 export default {
   name: "GameSettings",
   emits: ["changeboardsize"],
   setup(_, context) {
-    let isOpen = ref(0);
-    const store = settingsStore();
+    const store = useStore();
+    const settings = settingsStore();
 
     const boardSizes = [
       {
@@ -106,22 +106,32 @@ export default {
     ];
 
     const handleBoardSizeChange = ({ target }) => {
-      store.setBoardSize(parseInt(target.value));
+      settings.setBoardSize(parseInt(target.value));
       context.emit("changeboardsize");
     };
 
     const handlePopperColorChange = ({ target }) => {
-      store.setButtonColor(target.value);
+      settings.setButtonColor(target.value);
+    };
+
+    const handleButtonClick = () => {
+      store.setSettingsIsOpen(!store.getSettingsIsOpen);
     };
 
     return {
-      isOpen,
+      store,
       boardSizes,
       popperColors,
       handleBoardSizeChange,
       handlePopperColorChange,
+      handleButtonClick,
     };
   },
+  computed: {
+    isOpen() {
+      return this.store.getSettingsIsOpen;
+    },
+  }
 };
 </script>
 
