@@ -154,6 +154,8 @@ export default {
     box-shadow: 2px 2px 2px hsl(0, 0%, 90%);
     z-index: 10;
     transform-origin: top;
+    left: calc(-50vw - 2rem);
+    width: calc(100vw - 1rem);
   }
 
   &__summary {

@@ -35,9 +35,10 @@ export default {
 <style scoped lang="scss">
 @import "../../scss/mixins/fonts";
 .score-board {
-  position: absolute;
-  top: 2rem;
-  left: 2rem;
+  display: flex;
+  width: 100%;
+  align-items: flex-end;
+  justify-content: space-between;
 
   &__title {
     margin: 0;

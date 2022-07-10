@@ -14,24 +14,12 @@
       :turns-left="store.getTurnsLeft"
     />
 
-    <nav class="navigation">
-      <button
-        class="button button--small navigation__new-game"
-        @click.prevent="handleNewGameClick"
-      >
-        New Game
-      </button>
-
-      <button
-        v-if="store.poppers.length"
-        class="button button--small navigation__new-game"
-        @click.prevent="handleEndTurnButton"
-      >
-        End turn
-      </button>
-    </nav>
-
     <game-board />
+
+    <player-controls
+      @newgameclick="handleNewGameClick"
+      @endturnclick="handleEndTurnClick"
+    />
   </main>
 
   <main v-else title="Play game">
@@ -49,6 +37,7 @@ import { settingsStore } from "./state/settings-store";
 import HowTo from "./components/how-to/how-to.vue";
 import ScoreBoard from "./components/score-board/score-board.vue";
 import GameBoard from "./components/game-board/game-board.vue";
+import PlayerControls from "./components/player-controls/player-controls.vue"
 
 export default {
   name: "App",
@@ -56,12 +45,13 @@ export default {
     HowTo,
     ScoreBoard,
     GameBoard,
+    PlayerControls,
   },
   setup() {
     const store = useStore();
     const settings = settingsStore();
 
-    const handleEndTurnButton = () => {
+    const handleEndTurnClick = () => {
       store.startChangePlayer();
     };
 
@@ -90,7 +80,7 @@ export default {
 
     return {
       store,
-      handleEndTurnButton,
+      handleEndTurnClick,
       handleNewGameClick,
     };
   },
@@ -133,18 +123,6 @@ body {
   }
 }
 
-.navigation {
-  display: flex;
-  justify-content: center;
-  position: absolute;
-  bottom: 1rem;
-  width: 100%;
-
-  button {
-    margin: 0 2rem;
-  }
-}
-
 .game-info {
   display: flex;
   position: absolute;
@@ -152,19 +130,11 @@ body {
   left: 2rem;
 }
 
-.score-board,
-.game-settings {
-  width: 50%;
-}
-
 .game-settings {
   margin-top: 0;
 }
 
 .game-area {
-  display: grid;
   min-height: 100vh;
-  place-items: center;
-  position: relative;
 }
 </style>

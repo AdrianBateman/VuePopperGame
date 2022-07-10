@@ -4,7 +4,7 @@
       class="button how-to__summary"
       :class="{'how-to__summary--active': isOpen}"
       @click="handleButtonClick"
-    >how to play?</button>
+    >Rules</button>
 
     <Transition>
       <ul v-if="isOpen" class="how-to-list how-to__list">
@@ -77,6 +77,7 @@ export default {
   padding-bottom: 1rem;
   border-bottom: 1px solid colors.$borderSubtlePink;
   display: flex;
+  justify-content: space-between;
 
   &__summary {
     display: flex;
@@ -104,13 +105,14 @@ export default {
 }
 
 .how-to-list {
-  margin-top: 3rem;
   position: absolute;
-  background-color: white;
+  max-width: calc(100vw - 2rem);
+  margin-top: 3rem;
   padding: 1rem;
   border-bottom-left-radius: 0.5rem;
   border-bottom-right-radius: 0.5rem;
   box-shadow: 2px 2px 2px hsl(0, 0%, 90%);
+  background-color: white;
   z-index: 10;
   transform-origin: top;
 
