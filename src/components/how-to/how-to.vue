@@ -1,7 +1,7 @@
 <template>
   <aside class="how-to" title="How to play">
     <button
-      class="how-to__summary"
+      class="button how-to__summary"
       :class="{'how-to__summary--active': isOpen}"
       @click="handleButtonClick"
     >how to play?</button>
@@ -71,7 +71,6 @@ export default {
 
 <style scoped lang="scss">
 @use "../../scss/mixins/fonts";
-@use "../../scss/mixins/buttons";
 @use "../../scss/variables/colors";
 
 .how-to {
@@ -80,12 +79,8 @@ export default {
   display: flex;
 
   &__summary {
-    @include fonts.titleLabel;
-    @include buttons.defaultButton;
-
     display: flex;
     align-items: center;
-    padding: .5ch 1rem;
     margin-right: 2rem;
 
 

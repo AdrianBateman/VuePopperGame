@@ -3,7 +3,7 @@
     class="game-settings"
   >
     <button
-      class="game-settings__summary"
+      class="button game-settings__summary"
       :class="{'game-settings__summary--rotate': isOpen}"
       @click.stop="handleButtonClick"
     >
@@ -157,12 +157,8 @@ export default {
   }
 
   &__summary {
-    @include fonts.titleLabel;
-    @include buttons.defaultButton;
-
     display: flex;
     align-items: center;
-    padding: .5ch 1rem;
 
     &::before {
       content: "";
