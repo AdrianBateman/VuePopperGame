@@ -3,7 +3,7 @@
     <button
       class="how-to__summary"
       :class="{'how-to__summary--active': isOpen}"
-      @click="isOpen = !isOpen"
+      @click="handleButtonClick"
     >how to play?</button>
 
     <Transition>
@@ -25,7 +25,6 @@
 </template>
 
 <script>
-import { ref } from "vue";
 import GameSettings from "../game-settings/game-settings.vue";
 import { useStore } from "../../state/store";
 import { settingsStore } from "../../state/settings-store";
@@ -36,7 +35,6 @@ export default {
     GameSettings,
   },
   setup() {
-    const isOpen = ref(0);
     const store = useStore();
     const settings = settingsStore();
 
@@ -53,12 +51,21 @@ export default {
       store.setGameIsActive(true);
     };
 
+    const handleButtonClick = () => {
+      store.setHowToIsOpen(!store.getHowToIsOpen);
+    }
+
     return {
-      isOpen,
       store,
       handleChangeBoardSize,
+      handleButtonClick,
     };
   },
+  computed: {
+    isOpen() {
+      return this.store.getHowToIsOpen;
+    },
+  }
 };
 </script>
 
