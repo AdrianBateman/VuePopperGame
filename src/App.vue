@@ -51,10 +51,6 @@ export default {
     const store = useStore();
     const settings = settingsStore();
 
-    const handleEndTurnClick = () => {
-      store.startChangePlayer();
-    };
-
     const addPlayers = () => {
       store.addPlayer({ name: "Player One", remainingTurns: 5 });
       store.addPlayer({ name: "Player Two", remainingTurns: 5 });
@@ -73,6 +69,10 @@ export default {
         0,
         document.querySelector(".game-area").getBoundingClientRect().top
       );
+    };
+
+    const handleEndTurnClick = () => {
+      store.startChangePlayer();
     };
 
     addPlayers();

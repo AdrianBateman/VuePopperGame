@@ -53,6 +53,6 @@ export default {
   flex-wrap: wrap;
   max-width: calc(100vw - 2rem);
   margin: 2rem auto 0;
-  padding-bottom: 5rem;
+  justify-content: space-between;
 }
 </style>
