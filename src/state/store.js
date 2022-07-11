@@ -53,6 +53,7 @@ export const useStore = defineStore('main', {
       } else {
         this.game.winner = this.getCurrentPlayer;
         this.game.remainingPoppers--;
+        this.game.isActive = false;
       }
     },
 
