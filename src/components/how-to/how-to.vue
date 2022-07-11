@@ -74,27 +74,28 @@ export default {
 @use "../../scss/variables/colors";
 
 .how-to {
+  display: flex;
+  position: relative;
+  justify-content: space-between;
   padding-bottom: 1rem;
   border-bottom: 1px solid colors.$borderSubtlePink;
-  display: flex;
-  justify-content: space-between;
 
   &__summary {
     display: flex;
     align-items: center;
-    margin-right: 2rem;
-
+    padding-left: calc(1.5rem + 30px);
 
     &::before {
       content: "";
-      display: inline-block;
-      width: 30px;
+      display: block;
+      position: absolute;
+      width: 20px;
       height: 30px;
+      left: 1.5rem;
       background-image: url("/dist/how-to.svg");
       background-repeat: no-repeat;
       background-size: contain;
       background-position: center;
-      margin: 0 1ch 0 0;
       transition: transform .25s linear;
     }
 
@@ -107,7 +108,8 @@ export default {
 .how-to-list {
   position: absolute;
   max-width: calc(100vw - 2rem);
-  margin-top: 3rem;
+  top: calc(100% - .5rem);
+  margin: 0;
   padding: 1rem;
   border-bottom-left-radius: 0.5rem;
   border-bottom-right-radius: 0.5rem;

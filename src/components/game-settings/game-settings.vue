@@ -145,8 +145,11 @@ export default {
 
   &__details {
     position: absolute;
+    top: calc(100% + .5rem);
+    right: 0;
+    width: calc(100vw - 2rem);
     min-width: 50vw;
-    margin-top: .5rem;
+    margin: 0;
     padding: 1rem;
     border-bottom-left-radius: 0.5rem;
     border-bottom-right-radius: 0.5rem;
@@ -154,19 +157,20 @@ export default {
     box-shadow: 2px 2px 2px hsl(0, 0%, 90%);
     z-index: 10;
     transform-origin: top;
-    left: calc(-50vw - 2rem);
-    width: calc(100vw - 1rem);
   }
 
   &__summary {
     display: flex;
     align-items: center;
+    padding-left: calc(1.5rem + 40px);
 
     &::before {
       content: "";
       display: inline-block;
+      position: absolute;
       width: 30px;
       height: 30px;
+      left: 1.5rem;
       background-image: url("/dist/cog.svg");
       background-repeat: no-repeat;
       background-size: cover;
