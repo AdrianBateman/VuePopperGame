@@ -1,8 +1,10 @@
 <template>
   <div class="game-settings">
     <button
-      class="button game-settings__summary"
-      :class="{ 'game-settings__summary--rotate': isOpen }"
+      class="button game-settings__button"
+      :class="{
+        'game-settings__button--rotate': isOpen,
+      }"
       @click.stop="handleButtonClick"
     >
       Settings
@@ -91,8 +93,19 @@ export default {
       settings.setButtonColor(target.value);
     };
 
-    const handleButtonClick = () => {
+    const handleButtonClick = ({ target }) => {
       store.setSettingsIsOpen(!store.getSettingsIsOpen);
+
+      target.animate(
+        [
+          { transform: "translateY(2px)" },
+          { transform: "translateY(0)" },
+        ],
+        {
+          duration: 150,
+          iterations: 1,
+        },
+      );
     };
 
     return {
@@ -137,10 +150,11 @@ export default {
     transform-origin: top;
   }
 
-  &__summary {
+  &__button {
     display: flex;
     align-items: center;
     padding-left: calc(1.5rem + 40px);
+    animation-duration: 100ms;
 
     &::before {
       content: "";
