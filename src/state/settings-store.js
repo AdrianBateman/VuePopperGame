@@ -3,7 +3,9 @@ import { defineStore } from 'pinia'
 export const settingsStore = defineStore('settings', {
   state: () => {
     return {
-      boardSize: 25,
+      boardSize: (window.innerWidth < 400)
+        ? 16
+        : 25,
       buttonColor: 'pink',
     }
   },

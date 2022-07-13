@@ -25,7 +25,7 @@
               type="radio"
               name="board-size"
               :value="size.value"
-              :checked="size.selected"
+              :checked="settings.getBoardSize === size.value"
               @change="handleBoardSizeChange"
             />
           </label>
@@ -39,13 +39,13 @@
             class="game-settings__radio-label"
             :key="color"
           >
-            {{ color.value }}
+            {{ color }}
             <input
               class="game-settings__radio"
               type="radio"
               name="popper-color"
-              :value="color.value"
-              :checked="color.selected"
+              :value="color"
+              :checked="settings.getButtonColor === color"
               @change="handlePopperColorChange"
             />
           </label>
@@ -72,13 +72,12 @@ export default {
         value: 9,
       },
       {
-        label: "small",
+        label: "mobile",
         value: 16,
       },
       {
-        label: "normal",
+        label: "desktop",
         value: 25,
-        selected: true,
       },
       {
         label: "large",
@@ -87,22 +86,11 @@ export default {
     ];
 
     const popperColors = [
-      {
-        value: "pink",
-        selected: true,
-      },
-      {
-        value: "blue",
-      },
-      {
-        value: "green",
-      },
-      {
-        value: "red",
-      },
-      {
-        value: "orange",
-      },
+      'pink',
+      'blue',
+      'green',
+      'red',
+      'orange',
     ];
 
     const handleBoardSizeChange = ({ target }) => {
@@ -120,6 +108,7 @@ export default {
 
     return {
       store,
+      settings,
       boardSizes,
       popperColors,
       handleBoardSizeChange,
