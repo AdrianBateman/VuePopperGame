@@ -1,19 +1,14 @@
 <template>
-  <div
-    class="game-settings"
-  >
+  <div class="game-settings">
     <button
       class="button game-settings__summary"
-      :class="{'game-settings__summary--rotate': isOpen}"
+      :class="{ 'game-settings__summary--rotate': isOpen }"
       @click.stop="handleButtonClick"
     >
       Settings
     </button>
     <Transition>
-      <div
-        v-if="isOpen"
-        class="game-settings__details"
-      >
+      <div v-if="isOpen" class="game-settings__details">
         <h2>Popper Board size</h2>
 
         <div class="game-settings__fieldset">
@@ -76,7 +71,7 @@ export default {
         value: 16,
       },
       {
-        label: "desktop",
+        label: "normal",
         value: 25,
       },
       {
@@ -85,13 +80,7 @@ export default {
       },
     ];
 
-    const popperColors = [
-      'pink',
-      'blue',
-      'green',
-      'red',
-      'orange',
-    ];
+    const popperColors = ["pink", "blue", "green", "red", "orange"];
 
     const handleBoardSizeChange = ({ target }) => {
       settings.setBoardSize(parseInt(target.value));
@@ -120,7 +109,7 @@ export default {
     isOpen() {
       return this.store.getSettingsIsOpen;
     },
-  }
+  },
 };
 </script>
 
@@ -134,7 +123,7 @@ export default {
 
   &__details {
     position: absolute;
-    top: calc(100% + .5rem);
+    top: calc(100% + 0.5rem);
     right: 0;
     width: calc(100vw - 2rem);
     min-width: 50vw;
@@ -164,7 +153,7 @@ export default {
       background-repeat: no-repeat;
       background-size: cover;
       margin: 0 1ch 0 0;
-      transition: transform .25s linear;
+      transition: transform 0.25s linear;
     }
 
     &--rotate::before {

@@ -25,7 +25,7 @@
   <main v-else title="Play game">
     <h2 v-if="store.game.winner">{{ store.game.winner }} Wins!</h2>
 
-    <button class="button" @click.prevent="handleNewGameClick">New Game</button>
+    <button class="button new-game-button" @click.prevent="handleNewGameClick">New Game</button>
   </main>
 </template>
 
@@ -136,5 +136,9 @@ body {
 
 .game-area {
   min-height: 100vh;
+}
+
+.new-game-button {
+  margin: calc(100vh / 4) auto 0;
 }
 </style>

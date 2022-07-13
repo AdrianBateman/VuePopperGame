@@ -1,7 +1,7 @@
 <template>
   <div class="player-controls">
     <button
-      class="button player-controls__button"
+      class="button player-controls__button player-controls__button--small"
       @click.prevent="playerControlsGameClick"
     >
       New Game
@@ -47,12 +47,12 @@ export default {
 .player-controls {
   display: flex;
   width: 100%;
-  justify-content: space-between;
   margin: 4rem 0;
+  justify-content: space-between;
+  align-items: center;
 
   &__button {
     margin: 0;
-    padding: 1rem 1.5rem;
   }
 }
 </style>
