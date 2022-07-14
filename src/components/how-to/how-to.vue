@@ -28,6 +28,7 @@
 import GameSettings from "../game-settings/game-settings.vue";
 import { useStore } from "../../state/store";
 import { settingsStore } from "../../state/settings-store";
+import buttonClickAnimation from "../../functions/button-click-animation/button-click-animation";
 
 export default {
   name: "HowTo",
@@ -51,8 +52,9 @@ export default {
       store.setGameIsActive(true);
     };
 
-    const handleButtonClick = () => {
+    const handleButtonClick = ({target}) => {
       store.setHowToIsOpen(!store.getHowToIsOpen);
+      buttonClickAnimation(target);
     }
 
     return {

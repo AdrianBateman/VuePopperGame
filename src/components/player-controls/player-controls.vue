@@ -19,6 +19,7 @@
 
 <script>
 import { useStore } from "../../state/store";
+import buttonClickAnimation from "../../functions/button-click-animation/button-click-animation";
 
 export default {
   name: "PlayerControls",
@@ -26,12 +27,14 @@ export default {
   setup(_, context) {
     const store = useStore();
 
-    const playerControlsGameClick = () => {
+    const playerControlsGameClick = ({target}) => {
       context.emit("newgameclick");
+      buttonClickAnimation(target);
     };
 
-    const playerControlsTurnClick = () => {
+    const playerControlsTurnClick = ({target}) => {
       context.emit("endturnclick");
+      buttonClickAnimation(target);
     };
 
     return {

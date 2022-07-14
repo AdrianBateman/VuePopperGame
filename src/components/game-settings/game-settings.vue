@@ -55,6 +55,7 @@
 <script>
 import { useStore } from "../../state/store";
 import { settingsStore } from "../../state/settings-store";
+import buttonClickAnimation from "../../functions/button-click-animation/button-click-animation";
 
 export default {
   name: "GameSettings",
@@ -96,16 +97,7 @@ export default {
     const handleButtonClick = ({ target }) => {
       store.setSettingsIsOpen(!store.getSettingsIsOpen);
 
-      target.animate(
-        [
-          { transform: "translateY(2px)" },
-          { transform: "translateY(0)" },
-        ],
-        {
-          duration: 150,
-          iterations: 1,
-        },
-      );
+      buttonClickAnimation(target);
     };
 
     return {

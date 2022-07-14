@@ -38,6 +38,7 @@ import HowTo from "./components/how-to/how-to.vue";
 import ScoreBoard from "./components/score-board/score-board.vue";
 import GameBoard from "./components/game-board/game-board.vue";
 import PlayerControls from "./components/player-controls/player-controls.vue"
+import buttonClickAnimation from "./functions/button-click-animation/button-click-animation";
 
 export default {
   name: "App",
