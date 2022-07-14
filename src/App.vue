@@ -137,6 +137,7 @@ body {
 
 .game-area {
   min-height: 100vh;
+  padding: 0 .5rem
 }
 
 .new-game-button {

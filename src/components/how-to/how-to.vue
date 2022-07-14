@@ -79,7 +79,7 @@ export default {
   display: flex;
   position: relative;
   justify-content: space-between;
-  padding-bottom: 1rem;
+  padding: 0 .5rem 1rem .5rem;
   border-bottom: 1px solid colors.$borderSubtlePink;
 
   &__summary {
