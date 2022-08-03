@@ -131,7 +131,7 @@ export default {
     top: calc(100% + 0.5rem);
     right: 0;
     width: calc(100vw - 2rem);
-    min-width: 50vw;
+    max-width: calc(500px - 1rem);
     margin: 0;
     padding: 1rem;
     border-bottom-left-radius: 0.5rem;

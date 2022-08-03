@@ -27,7 +27,7 @@ export default {
 
 <template>
   <aside class="score-board">
-    <h2 class="score-board__title">{{ props.currentPlayer }}</h2>
+    <h2 ref="currentplayer" class="score-board__title">{{ props.currentPlayer }}</h2>
     <p class="score-board__turns">Turns: {{ props.turnsLeft }}</p>
   </aside>
 </template>

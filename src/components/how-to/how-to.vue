@@ -109,7 +109,8 @@ export default {
 
 .how-to-list {
   position: absolute;
-  max-width: calc(100vw - 2rem);
+  width: fit-content;
+  max-width: calc(500px - 1rem);
   top: calc(100% - .5rem);
   margin: 0;
   padding: 1rem;

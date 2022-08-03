@@ -116,6 +116,7 @@ body {
   margin: 0 auto;
   overflow-x: hidden;
   min-height: 90vh;
+  max-width: 500px;
 }
 
 .title {
