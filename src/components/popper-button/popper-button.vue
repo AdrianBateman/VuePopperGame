@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { settingsStore } from '../../state/settings-store';
+import settingsStore from '../../state/settings-store';
 
 export default {
   name: 'PopperButton',
@@ -24,7 +24,7 @@ export default {
     isPopped: {
       type: Boolean,
       default: false,
-    }
+    },
   },
   setup(props) {
     const store = settingsStore();
@@ -33,7 +33,7 @@ export default {
       props,
       store,
     };
-  }
+  },
 };
 </script>
 

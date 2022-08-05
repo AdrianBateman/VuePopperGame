@@ -25,13 +25,13 @@
 </template>
 
 <script>
-import GameSettings from "../game-settings/game-settings.vue";
-import { useStore } from "../../state/store";
-import { settingsStore } from "../../state/settings-store";
-import buttonClickAnimation from "../../functions/button-click-animation/button-click-animation";
+import GameSettings from '../game-settings/game-settings.vue';
+import useStore from '../../state/store';
+import settingsStore from '../../state/settings-store';
+import buttonClickAnimation from '../../functions/button-click-animation/button-click-animation';
 
 export default {
-  name: "HowTo",
+  name: 'HowTo',
   components: {
     GameSettings,
   },
@@ -40,8 +40,8 @@ export default {
     const settings = settingsStore();
 
     const addPlayers = () => {
-      store.addPlayer({ name: "Player One", remainingTurns: 5 });
-      store.addPlayer({ name: "Player Two", remainingTurns: 5 });
+      store.addPlayer({ name: 'Player One', remainingTurns: 5 });
+      store.addPlayer({ name: 'Player Two', remainingTurns: 5 });
     };
 
     const handleChangeBoardSize = () => {
@@ -52,10 +52,10 @@ export default {
       store.setGameIsActive(true);
     };
 
-    const handleButtonClick = ({target}) => {
+    const handleButtonClick = ({ target }) => {
       store.setHowToIsOpen(!store.getHowToIsOpen);
       buttonClickAnimation(target);
-    }
+    };
 
     return {
       store,
@@ -67,7 +67,7 @@ export default {
     isOpen() {
       return this.store.getHowToIsOpen;
     },
-  }
+  },
 };
 </script>
 

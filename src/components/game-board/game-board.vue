@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import { useStore } from "../../state/store";
+import useStore from '../../state/store';
 import PopperButton from '../popper-button/popper-button.vue';
 
 export default {
@@ -42,8 +42,8 @@ export default {
       return {
         width: `${this.store.getGridColumns * (66)}px`,
       };
-    }
-  }
+    },
+  },
 };
 </script>
 

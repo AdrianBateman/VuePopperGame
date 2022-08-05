@@ -1,22 +1,20 @@
-import { defineStore } from 'pinia'
+import { defineStore } from 'pinia';
 
-export const useStore = defineStore('main', {
-  state: () => {
-    return {
-      title: 'Wizzy Popper Game',
-      game: {
-        numberPoppers: 25,
-        remainingPoppers: 25,
-        winner: undefined,
-        currentPlayer: 0,
-        isActive: false,
-      },
-      poppers: [],
-      players: [],
-      settingsIsOpen: false,
-      howToIsOpen: false,
-    }
-  },
+const useStore = defineStore('main', {
+  state: () => ({
+    title: 'Wizzy Popper Game',
+    game: {
+      numberPoppers: 25,
+      remainingPoppers: 25,
+      winner: undefined,
+      currentPlayer: 0,
+      isActive: false,
+    },
+    poppers: [],
+    players: [],
+    settingsIsOpen: false,
+    howToIsOpen: false,
+  }),
   // TODO: export this to seperate file
   getters: {
     getCurrentPlayer(state) {
@@ -42,17 +40,17 @@ export const useStore = defineStore('main', {
   // TODO: export this to seperate file
   actions: {
     setPoppers() {
-      for(let i = 0; i < this.game.numberPoppers; i += 1) {
+      for (let i = 0; i < this.game.numberPoppers; i += 1) {
         this.poppers.push({});
       }
     },
 
     decreaseRemainingPoppers() {
       if (this.game.remainingPoppers > 1) {
-        this.game.remainingPoppers--;
+        this.game.remainingPoppers -= 1;
       } else {
         this.game.winner = this.getCurrentPlayer;
-        this.game.remainingPoppers--;
+        this.game.remainingPoppers -= 1;
         this.game.isActive = false;
       }
     },
@@ -73,7 +71,7 @@ export const useStore = defineStore('main', {
 
     decrecePlayerTurn() {
       if (this.getTurnsLeft > 1) {
-        this.players[this.game.currentPlayer].remainingTurns--;
+        this.players[this.game.currentPlayer].remainingTurns -= 1;
       } else {
         this.startChangePlayer();
       }
@@ -105,3 +103,5 @@ export const useStore = defineStore('main', {
     },
   },
 });
+
+export default useStore;

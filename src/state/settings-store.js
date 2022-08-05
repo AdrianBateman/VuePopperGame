@@ -1,14 +1,12 @@
-import { defineStore } from 'pinia'
+import { defineStore } from 'pinia';
 
-export const settingsStore = defineStore('settings', {
-  state: () => {
-    return {
-      boardSize: (window.innerWidth < 400)
-        ? 16
-        : 25,
-      buttonColor: 'pink',
-    }
-  },
+const settingsStore = defineStore('settings', {
+  state: () => ({
+    boardSize: (window.innerWidth < 400)
+      ? 16
+      : 25,
+    buttonColor: 'pink',
+  }),
 
   getters: {
     getBoardSize(state) {
@@ -25,6 +23,8 @@ export const settingsStore = defineStore('settings', {
     },
     setButtonColor(newColor) {
       this.buttonColor = newColor;
-    }
+    },
   },
 });
+
+export default settingsStore;

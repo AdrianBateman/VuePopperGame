@@ -16,7 +16,7 @@
 
 <script>
 export default {
-  name: "LightBox",
+  name: 'LightBox',
   emits: ['closelightbox'],
   props: {
     isOpen: {
@@ -24,13 +24,13 @@ export default {
       default: false,
     },
   },
-  setup(props, { emit } ) {
+  setup(props, { emit }) {
     const handleCloseButtonClick = () => {
       emit('closelightbox');
     };
 
-    return {props, handleCloseButtonClick};
-  }
+    return { props, handleCloseButtonClick };
+  },
 };
 </script>
 

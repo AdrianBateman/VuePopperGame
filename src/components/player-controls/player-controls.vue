@@ -18,22 +18,22 @@
 </template>
 
 <script>
-import { useStore } from "../../state/store";
-import buttonClickAnimation from "../../functions/button-click-animation/button-click-animation";
+import useStore from '../../state/store';
+import buttonClickAnimation from '../../functions/button-click-animation/button-click-animation';
 
 export default {
-  name: "PlayerControls",
-  emits: ["newgameclick", "endturnclick"],
+  name: 'PlayerControls',
+  emits: ['newgameclick', 'endturnclick'],
   setup(_, context) {
     const store = useStore();
 
-    const playerControlsGameClick = ({target}) => {
-      context.emit("newgameclick");
+    const playerControlsGameClick = ({ target }) => {
+      context.emit('newgameclick');
       buttonClickAnimation(target);
     };
 
-    const playerControlsTurnClick = ({target}) => {
-      context.emit("endturnclick");
+    const playerControlsTurnClick = ({ target }) => {
+      context.emit('endturnclick');
       buttonClickAnimation(target);
     };
 

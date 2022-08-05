@@ -14,7 +14,11 @@
         <h2>Popper Board size</h2>
 
         <div class="game-settings__fieldset">
-          <label v-for="size in boardSizes" class="game-settings__radio-label">
+          <label
+            v-for="(size, index) in boardSizes"
+            :key="boardSizes + index"
+            class="game-settings__radio-label"
+          >
             {{ size.label }}
 
             <input
@@ -53,41 +57,41 @@
 </template>
 
 <script>
-import { useStore } from "../../state/store";
-import { settingsStore } from "../../state/settings-store";
-import buttonClickAnimation from "../../functions/button-click-animation/button-click-animation";
+import useStore from '../../state/store';
+import settingsStore from '../../state/settings-store';
+import buttonClickAnimation from '../../functions/button-click-animation/button-click-animation';
 
 export default {
-  name: "GameSettings",
-  emits: ["changeboardsize"],
+  name: 'GameSettings',
+  emits: ['changeboardsize'],
   setup(_, context) {
     const store = useStore();
     const settings = settingsStore();
 
     const boardSizes = [
       {
-        label: "tiny",
+        label: 'tiny',
         value: 9,
       },
       {
-        label: "mobile",
+        label: 'mobile',
         value: 16,
       },
       {
-        label: "normal",
+        label: 'normal',
         value: 25,
       },
       {
-        label: "large",
+        label: 'large',
         value: 36,
       },
     ];
 
-    const popperColors = ["pink", "blue", "green", "red", "orange"];
+    const popperColors = ['pink', 'blue', 'green', 'red', 'orange'];
 
     const handleBoardSizeChange = ({ target }) => {
-      settings.setBoardSize(parseInt(target.value));
-      context.emit("changeboardsize");
+      settings.setBoardSize(parseInt(target.value, 10));
+      context.emit('changeboardsize');
     };
 
     const handlePopperColorChange = ({ target }) => {
