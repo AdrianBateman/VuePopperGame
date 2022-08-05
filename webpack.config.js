@@ -49,7 +49,10 @@ module.exports = {
     }),
     new CopyPlugin({
       patterns: [
-        { from: 'src/assets/*.svg', to: '[name].svg' },
+        {
+          from: 'src/assets/*.svg',
+          to: '[name].svg'
+        },
       ],
     }),
   ],
