@@ -11,17 +11,26 @@
       :isPopped="index.isPopped"
       @popperclick="handelPopperClick"
     />
+    <LightBox
+      :is-open="showPlayerLightBox"
+      @closelightbox="handleCloseLightBox"
+    >
+      Turn over!<br>
+      {{ store.getCurrentPlayer }}, it's your turn!
+    </LightBox>
   </section>
 </template>
 
 <script>
 import useStore from '../../state/store';
 import PopperButton from '../popper-button/popper-button.vue';
+import LightBox from '../light-box/light-box.vue';
 
 export default {
   name: 'GameBoard',
   components: {
     PopperButton,
+    LightBox,
   },
   setup() {
     const store = useStore();
@@ -32,9 +41,14 @@ export default {
       store.setPopperIsPopped(id);
     };
 
+    const handleCloseLightBox = () => {
+      store.setLightBoxNextPlayer(false);
+    };
+
     return {
       store,
       handelPopperClick,
+      handleCloseLightBox,
     };
   },
   computed: {
@@ -43,6 +57,9 @@ export default {
         width: `${this.store.getGridColumns * (66)}px`,
       };
     },
+    showPlayerLightBox() {
+      return this.store.getLightBoxNextPlayer;
+    }
   },
 };
 </script>

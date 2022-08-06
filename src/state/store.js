@@ -14,6 +14,7 @@ const useStore = defineStore('main', {
     players: [],
     settingsIsOpen: false,
     howToIsOpen: false,
+    lightBoxNextPlayer: false,
   }),
   // TODO: export this to seperate file
   getters: {
@@ -36,6 +37,10 @@ const useStore = defineStore('main', {
     getHowToIsOpen(state) {
       return state.howToIsOpen;
     },
+
+    getLightBoxNextPlayer(state) {
+      return state.lightBoxNextPlayer;
+    }
   },
   // TODO: export this to seperate file
   actions: {
@@ -64,9 +69,11 @@ const useStore = defineStore('main', {
 
       this.game.currentPlayer = (
         this.game.currentPlayer === (this.players.length - 1)
-      )
+        )
         ? 0
         : this.game.currentPlayer + 1;
+
+      this.setLightBoxNextPlayer(true);
     },
 
     decrecePlayerTurn() {
@@ -101,6 +108,10 @@ const useStore = defineStore('main', {
     setHowToIsOpen(newVale) {
       this.howToIsOpen = newVale;
     },
+
+    setLightBoxNextPlayer(newValue) {
+      this.lightBoxNextPlayer = newValue;
+    }
   },
 });
 
