@@ -7,20 +7,13 @@
     <how-to />
 
     <main v-if="store.game.isActive" class="game-area" title="Play game">
-      <score-board
-        v-if="store.poppers.length"
-        :number-poppers="store.game.numberPoppers"
-        :remaining-poppers="store.game.remainingPoppers"
-        :current-player="store.getCurrentPlayer"
-        :turns-left="store.getTurnsLeft"
-      />
+      <score-board v-if="store.poppers.length" :number-poppers="store.game.numberPoppers"
+        :remaining-poppers="store.game.remainingPoppers" :current-player="store.getCurrentPlayer"
+        :turns-left="store.getTurnsLeft" />
 
       <game-board />
 
-      <player-controls
-        @newgameclick="handleNewGameClick"
-        @endturnclick="handleEndTurnClick"
-      />
+      <player-controls @newgameclick="handleNewGameClick" @endturnclick="handleEndTurnClick" />
     </main>
 
     <main v-else title="Play game">
@@ -59,6 +52,13 @@ export default {
     };
 
     const handleNewGameClick = async () => {
+      if (
+        store.game.isActive
+        && !window.confirm('Would you like to start a new game?')
+      ) {
+        return;
+      }
+
       store.$reset();
       addPlayers();
       store.setGameBoardSize(settings.getBoardSize);
@@ -98,7 +98,8 @@ export default {
   padding: 0;
   box-sizing: border-box;
 }
-* + * {
+
+*+* {
   margin-top: 1.5rem;
 }
 
