@@ -33,6 +33,10 @@ export default {
     };
 
     const playerControlsTurnClick = ({ target }) => {
+      if (store.getTurnsLeft === 5) {
+        return;
+      }
+
       context.emit('endturnclick');
       buttonClickAnimation(target);
     };
