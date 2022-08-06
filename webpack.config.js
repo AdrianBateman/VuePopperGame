@@ -37,6 +37,14 @@ module.exports = {
     ],
   },
   plugins: [
+    new CopyPlugin({
+      patterns: [
+        {
+          from: 'src/assets/*.svg',
+          to: '[name].svg'
+        },
+      ],
+    }),
     new VueLoaderPlugin(),
     new MiniCssExtractPlugin({
       filename: '[name].css',
@@ -46,14 +54,6 @@ module.exports = {
     new webpack.DefinePlugin({
       __VUE_PROD_DEVTOOLS__: true,
       __VUE_OPTIONS_API__: true,
-    }),
-    new CopyPlugin({
-      patterns: [
-        {
-          from: 'src/assets/*.svg',
-          to: '[name].svg'
-        },
-      ],
     }),
   ],
   watchOptions: {
