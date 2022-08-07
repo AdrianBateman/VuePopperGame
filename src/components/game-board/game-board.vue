@@ -15,8 +15,12 @@
       :is-open="showPlayerLightBox"
       @closelightbox="handleCloseLightBox"
     >
-      Turn over!<br>
-      {{ store.getCurrentPlayer }}, it's your turn!
+      <h1 class="turn-over__title">
+        Turn over!
+      </h1>
+      <p class="turn-over__message">
+        <em>{{ store.getCurrentPlayer }}</em>,<br>it's your turn!
+      </p>
     </LightBox>
   </section>
 </template>
@@ -71,5 +75,23 @@ export default {
   max-width: calc(100vw - 2rem);
   margin: 2rem auto 0;
   justify-content: space-between;
+}
+
+.turn-over {
+  &__title {
+    margin: 0;
+    text-align: center;
+  }
+
+  &__message {
+    margin: 0 0 1rem;
+    text-align: center;
+    line-height: 1.5;
+
+    em {
+      font-weight: 900;
+      font-size: 2rem;
+    }
+  }
 }
 </style>

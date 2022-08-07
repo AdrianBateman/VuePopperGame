@@ -5,11 +5,11 @@
     @click.prevent="handleCloseButtonClick"
   >
     <div class="light-box-content">
+      <slot />
       <button
-        class="ligth-box-content__close-button"
+        class="button ligth-box-content__close-button"
         @click.prevent="handleCloseButtonClick"
       >Close</button>
-      <slot />
     </div>
   </section>
 </template>
@@ -39,6 +39,7 @@ export default {
   position: fixed;
   top: 0;
   left: 0;
+  margin: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -48,7 +49,16 @@ export default {
 }
 
 .light-box-content {
+  position: relative;
+  padding: 2rem 4rem 5rem;
   background-color: #fff;
-  padding: 30px;
 }
+
+.ligth-box-content__close-button {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 0;
+}
+
 </style>

@@ -4,7 +4,7 @@
       class="button player-controls__button player-controls__button--small"
       @click.prevent="playerControlsGameClick"
     >
-      New Game
+      Quit
     </button>
 
     <button
@@ -12,7 +12,7 @@
       class="button player-controls__button"
       @click.prevent="playerControlsTurnClick"
     >
-      End turn
+      Finish
     </button>
   </div>
 </template>
