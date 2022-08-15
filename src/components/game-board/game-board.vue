@@ -63,7 +63,7 @@ export default {
     },
     showPlayerLightBox() {
       return this.store.getLightBoxNextPlayer;
-    }
+    },
   },
 };
 </script>

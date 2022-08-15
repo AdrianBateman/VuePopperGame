@@ -40,7 +40,7 @@ const useStore = defineStore('main', {
 
     getLightBoxNextPlayer(state) {
       return state.lightBoxNextPlayer;
-    }
+    },
   },
   // TODO: export this to seperate file
   actions: {
@@ -69,7 +69,7 @@ const useStore = defineStore('main', {
 
       this.game.currentPlayer = (
         this.game.currentPlayer === (this.players.length - 1)
-        )
+      )
         ? 0
         : this.game.currentPlayer + 1;
 
@@ -111,7 +111,7 @@ const useStore = defineStore('main', {
 
     setLightBoxNextPlayer(newValue) {
       this.lightBoxNextPlayer = newValue;
-    }
+    },
   },
 });
 

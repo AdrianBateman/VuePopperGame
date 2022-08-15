@@ -1,7 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { VueLoaderPlugin } = require('vue-loader');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
@@ -13,6 +13,10 @@ module.exports = {
   },
   module: {
     rules: [
+      {
+        test: /\.(jpg|png|svg)/,
+        type: 'asset/resource',
+      },
       {
         test: /\.vue$/,
         loader: 'vue-loader',
@@ -26,13 +30,14 @@ module.exports = {
               publicPath: '/dist/',
             },
           },
-          'css-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              url: false,
+            }
+          },
           'sass-loader',
         ],
-      },
-      {
-        test: /\.(jpg|png|svg)/,
-        type: 'asset/resource',
       },
     ],
   },
@@ -41,7 +46,8 @@ module.exports = {
       patterns: [
         {
           from: 'src/assets/*.svg',
-          to: '[name].svg'
+          to: '[name].svg',
+          info: { minimized: true },
         },
       ],
     }),
