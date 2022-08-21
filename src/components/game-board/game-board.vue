@@ -22,6 +22,7 @@
         <em>{{ store.getCurrentPlayer }}</em>,<br>it's your turn!
       </p>
     </LightBox>
+
   </section>
 </template>
 
@@ -38,11 +39,17 @@ export default {
   },
   setup() {
     const store = useStore();
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    const audioElement = new Audio(require('../../../dist/pop.wav'))
+    const audioContext = new AudioContext();
+    const track = audioContext.createMediaElementSource(audioElement);
+    track.connect(audioContext.destination);
 
     const handelPopperClick = (id) => {
       store.decreaseRemainingPoppers();
       store.decrecePlayerTurn();
       store.setPopperIsPopped(id);
+      audioElement.play();
     };
 
     const handleCloseLightBox = () => {

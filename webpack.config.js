@@ -14,6 +14,10 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.(wav)/,
+        type: 'asset/resource',
+      },
+      {
         test: /\.(jpg|png|svg)/,
         type: 'asset/resource',
       },
@@ -47,6 +51,11 @@ module.exports = {
         {
           from: 'src/assets/*.svg',
           to: '[name].svg',
+          info: { minimized: true },
+        },
+        {
+          from: 'src/assets/*.wav',
+          to: '[name].wav',
           info: { minimized: true },
         },
       ],
