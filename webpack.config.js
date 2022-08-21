@@ -46,6 +46,7 @@ module.exports = {
     ],
   },
   plugins: [
+    new CleanWebpackPlugin(),
     new CopyPlugin({
       patterns: [
         {
@@ -65,7 +66,6 @@ module.exports = {
       filename: '[name].css',
       chunkFilename: '[name].css',
     }),
-    new CleanWebpackPlugin(),
     new webpack.DefinePlugin({
       __VUE_PROD_DEVTOOLS__: true,
       __VUE_OPTIONS_API__: true,

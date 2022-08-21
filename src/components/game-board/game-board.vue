@@ -40,7 +40,7 @@ export default {
   setup() {
     const store = useStore();
     const AudioContext = window.AudioContext || window.webkitAudioContext;
-    const audioElement = new Audio(require('../../../dist/pop.wav'))
+    const audioElement = new Audio('/dist/pop.wav');
     const audioContext = new AudioContext();
     const track = audioContext.createMediaElementSource(audioElement);
     track.connect(audioContext.destination);
