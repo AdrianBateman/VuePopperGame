@@ -1,4 +1,6 @@
 ![Release](https://badgen.net/github/release/AdrianBateman/VuePopperGame) ![Docker](https://badgen.net/badge/icon/docker?icon=docker&label) ![NPM](https://badgen.net/npm/v/express)
+
+[![Dependency Review](https://github.com/AdrianBateman/VuePopperGame/actions/workflows/dependency-review.yml/badge.svg)](https://github.com/AdrianBateman/VuePopperGame/actions/workflows/dependency-review.yml)
 # wizzypop
 
 ## Project setup
