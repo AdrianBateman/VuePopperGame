@@ -1,3 +1,4 @@
+!\[my badge\](https://badgen.net/badge/%20/7:3+/color?icon=php) 
 # wizzypop
 
 ## Project setup
